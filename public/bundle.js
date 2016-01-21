@@ -68,7 +68,7 @@
 
 	'use strict';
 
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
 
@@ -84,7 +84,7 @@
 
 	var io = __webpack_require__(159);
 
-	var App = (function (_React$Component) {
+	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
 
 	    function App() {
@@ -105,9 +105,9 @@
 	    }]);
 
 	    return App;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
-	var CommentBox = (function (_React$Component2) {
+	var CommentBox = function (_React$Component2) {
 	    _inherits(CommentBox, _React$Component2);
 
 	    function CommentBox() {
@@ -118,7 +118,6 @@
 	        var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(CommentBox).call(this));
 
 	        _this2.state = { data: [] };
-	        //   this.handleCommentSubmit= this.handleCommentSubmit.bind(this);
 	        _this2.updateCommentList = _this2.updateCommentList.bind(_this2);
 
 	        return _this2;
@@ -128,7 +127,7 @@
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
 
-	            this.socket = io('https://reactapp-shqc9.c9users.io:8080');
+	            this.socket = io('http://localhost:3000');
 	            this.socket.on('connect', this.connect);
 	            this.socket.on('commentlist', this.updateCommentList);
 	        }
@@ -136,7 +135,6 @@
 	        key: 'connect',
 	        value: function connect() {
 	            console.log("connected");
-	            // alert("connected");
 	        }
 	    }, {
 	        key: 'updateCommentList',
@@ -166,7 +164,6 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            //let txt = this.props.txt
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -177,9 +174,9 @@
 	    }]);
 
 	    return CommentBox;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
-	var CommentList = (function (_React$Component3) {
+	var CommentList = function (_React$Component3) {
 	    _inherits(CommentList, _React$Component3);
 
 	    function CommentList() {
@@ -207,9 +204,9 @@
 	    }]);
 
 	    return CommentList;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
-	var Comment = (function (_React$Component4) {
+	var Comment = function (_React$Component4) {
 	    _inherits(Comment, _React$Component4);
 
 	    function Comment() {
@@ -235,9 +232,9 @@
 	    }]);
 
 	    return Comment;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
-	var CommenForm = (function (_React$Component5) {
+	var CommenForm = function (_React$Component5) {
 	    _inherits(CommenForm, _React$Component5);
 
 	    function CommenForm() {
@@ -302,7 +299,7 @@
 	    }]);
 
 	    return CommenForm;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 
 	module.exports = App;
 
@@ -1321,7 +1318,7 @@
 	 * will remain to ensure logic does not differ in production.
 	 */
 
-	var invariant = function (condition, format, a, b, c, d, e, f) {
+	function invariant(condition, format, a, b, c, d, e, f) {
 	  if (process.env.NODE_ENV !== 'production') {
 	    if (format === undefined) {
 	      throw new Error('invariant requires an error message argument');
@@ -1335,15 +1332,16 @@
 	    } else {
 	      var args = [a, b, c, d, e, f];
 	      var argIndex = 0;
-	      error = new Error('Invariant Violation: ' + format.replace(/%s/g, function () {
+	      error = new Error(format.replace(/%s/g, function () {
 	        return args[argIndex++];
 	      }));
+	      error.name = 'Invariant Violation';
 	    }
 
 	    error.framesToPop = 1; // we don't care about invariant's own frame
 	    throw error;
 	  }
-	};
+	}
 
 	module.exports = invariant;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
@@ -10770,8 +10768,8 @@
 	     */
 	    // autoCapitalize and autoCorrect are supported in Mobile Safari for
 	    // keyboard hints.
-	    autoCapitalize: null,
-	    autoCorrect: null,
+	    autoCapitalize: MUST_USE_ATTRIBUTE,
+	    autoCorrect: MUST_USE_ATTRIBUTE,
 	    // autoSave allows WebKit/Blink to persist values of input fields on page reloads
 	    autoSave: null,
 	    // color is for Safari mask-icon link
@@ -10802,9 +10800,7 @@
 	    httpEquiv: 'http-equiv'
 	  },
 	  DOMPropertyNames: {
-	    autoCapitalize: 'autocapitalize',
 	    autoComplete: 'autocomplete',
-	    autoCorrect: 'autocorrect',
 	    autoFocus: 'autofocus',
 	    autoPlay: 'autoplay',
 	    autoSave: 'autosave',
@@ -13883,7 +13879,7 @@
 	    var value = LinkedValueUtils.getValue(props);
 
 	    if (value != null) {
-	      updateOptions(this, props, value);
+	      updateOptions(this, Boolean(props.multiple), value);
 	    }
 	  }
 	}
@@ -16918,11 +16914,14 @@
 	 * @typechecks
 	 */
 
+	/* eslint-disable fb-www/typeof-undefined */
+
 	/**
 	 * Same as document.activeElement but wraps in a try-catch block. In IE it is
 	 * not safe to call document.activeElement if there is nothing focused.
 	 *
-	 * The activeElement will be null only if the document or document body is not yet defined.
+	 * The activeElement will be null only if the document or document body is not
+	 * yet defined.
 	 */
 	'use strict';
 
@@ -16930,7 +16929,6 @@
 	  if (typeof document === 'undefined') {
 	    return null;
 	  }
-
 	  try {
 	    return document.activeElement || document.body;
 	  } catch (e) {
@@ -18670,7 +18668,9 @@
 	  'setValueForProperty': 'update attribute',
 	  'setValueForAttribute': 'update attribute',
 	  'deleteValueForProperty': 'remove attribute',
-	  'dangerouslyReplaceNodeWithMarkupByID': 'replace'
+	  'setValueForStyles': 'update styles',
+	  'replaceNodeWithMarkup': 'replace',
+	  'updateTextContent': 'set textContent'
 	};
 
 	function getTotalTime(measurements) {
@@ -18862,18 +18862,23 @@
 	'use strict';
 
 	var performance = __webpack_require__(146);
-	var curPerformance = performance;
+
+	var performanceNow;
 
 	/**
 	 * Detect if we can use `window.performance.now()` and gracefully fallback to
 	 * `Date.now()` if it doesn't exist. We need to support Firefox < 15 for now
 	 * because of Facebook's testing infrastructure.
 	 */
-	if (!curPerformance || !curPerformance.now) {
-	  curPerformance = Date;
+	if (performance.now) {
+	  performanceNow = function () {
+	    return performance.now();
+	  };
+	} else {
+	  performanceNow = function () {
+	    return Date.now();
+	  };
 	}
-
-	var performanceNow = curPerformance.now.bind(curPerformance);
 
 	module.exports = performanceNow;
 
@@ -18922,7 +18927,7 @@
 
 	'use strict';
 
-	module.exports = '0.14.3';
+	module.exports = '0.14.6';
 
 /***/ },
 /* 148 */
@@ -19889,22 +19894,14 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	module.exports = __webpack_require__(160);
-
-
-/***/ },
-/* 160 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
 	/**
 	 * Module dependencies.
 	 */
 
-	var url = __webpack_require__(161);
-	var parser = __webpack_require__(164);
-	var Manager = __webpack_require__(171);
-	var debug = __webpack_require__(163)('socket.io-client');
+	var url = __webpack_require__(160);
+	var parser = __webpack_require__(165);
+	var Manager = __webpack_require__(173);
+	var debug = __webpack_require__(162)('socket.io-client');
 
 	/**
 	 * Module exports.
@@ -19942,9 +19939,14 @@
 	  var parsed = url(uri);
 	  var source = parsed.source;
 	  var id = parsed.id;
+	  var path = parsed.path;
+	  var sameNamespace = cache[id] && path in cache[id].nsps;
+	  var newConnection = opts.forceNew || opts['force new connection'] ||
+	                      false === opts.multiplex || sameNamespace;
+
 	  var io;
 
-	  if (opts.forceNew || opts['force new connection'] || false === opts.multiplex) {
+	  if (newConnection) {
 	    debug('ignoring socket cache for %s', source);
 	    io = Manager(source, opts);
 	  } else {
@@ -19981,12 +19983,12 @@
 	 * @api public
 	 */
 
-	exports.Manager = __webpack_require__(171);
-	exports.Socket = __webpack_require__(203);
+	exports.Manager = __webpack_require__(173);
+	exports.Socket = __webpack_require__(201);
 
 
 /***/ },
-/* 161 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -19994,8 +19996,8 @@
 	 * Module dependencies.
 	 */
 
-	var parseuri = __webpack_require__(162);
-	var debug = __webpack_require__(163)('socket.io-client:url');
+	var parseuri = __webpack_require__(161);
+	var debug = __webpack_require__(162)('socket.io-client:url');
 
 	/**
 	 * Module exports.
@@ -20025,7 +20027,7 @@
 	      if ('/' == uri.charAt(1)) {
 	        uri = loc.protocol + uri;
 	      } else {
-	        uri = loc.hostname + uri;
+	        uri = loc.host + uri;
 	      }
 	    }
 
@@ -20055,10 +20057,13 @@
 
 	  obj.path = obj.path || '/';
 
+	  var ipv6 = obj.host.indexOf(':') !== -1;
+	  var host = ipv6 ? '[' + obj.host + ']' : obj.host;
+
 	  // define unique id
-	  obj.id = obj.protocol + '://' + obj.host + ':' + obj.port;
+	  obj.id = obj.protocol + '://' + host + ':' + obj.port;
 	  // define href
-	  obj.href = obj.protocol + '://' + obj.host + (loc && loc.port == obj.port ? '' : (':' + obj.port));
+	  obj.href = obj.protocol + '://' + host + (loc && loc.port == obj.port ? '' : (':' + obj.port));
 
 	  return obj;
 	}
@@ -20066,7 +20071,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 162 */
+/* 161 */
 /***/ function(module, exports) {
 
 	/**
@@ -20079,98 +20084,366 @@
 	var re = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
 
 	var parts = [
-	    'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host'
-	  , 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
+	    'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
 	];
 
 	module.exports = function parseuri(str) {
-	  var m = re.exec(str || '')
-	    , uri = {}
-	    , i = 14;
+	    var src = str,
+	        b = str.indexOf('['),
+	        e = str.indexOf(']');
 
-	  while (i--) {
-	    uri[parts[i]] = m[i] || '';
-	  }
+	    if (b != -1 && e != -1) {
+	        str = str.substring(0, b) + str.substring(b, e).replace(/:/g, ';') + str.substring(e, str.length);
+	    }
 
-	  return uri;
+	    var m = re.exec(str || ''),
+	        uri = {},
+	        i = 14;
+
+	    while (i--) {
+	        uri[parts[i]] = m[i] || '';
+	    }
+
+	    if (b != -1 && e != -1) {
+	        uri.source = src;
+	        uri.host = uri.host.substring(1, uri.host.length - 1).replace(/;/g, ':');
+	        uri.authority = uri.authority.replace('[', '').replace(']', '').replace(/;/g, ':');
+	        uri.ipv6uri = true;
+	    }
+
+	    return uri;
 	};
 
 
 /***/ },
-/* 163 */
-/***/ function(module, exports) {
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
 
 	
 	/**
+	 * This is the web browser implementation of `debug()`.
+	 *
 	 * Expose `debug()` as the module.
 	 */
 
-	module.exports = debug;
+	exports = module.exports = __webpack_require__(163);
+	exports.log = log;
+	exports.formatArgs = formatArgs;
+	exports.save = save;
+	exports.load = load;
+	exports.useColors = useColors;
+	exports.storage = 'undefined' != typeof chrome
+	               && 'undefined' != typeof chrome.storage
+	                  ? chrome.storage.local
+	                  : localstorage();
 
 	/**
-	 * Create a debugger with the given `name`.
-	 *
-	 * @param {String} name
-	 * @return {Type}
-	 * @api public
+	 * Colors.
 	 */
 
-	function debug(name) {
-	  if (!debug.enabled(name)) return function(){};
+	exports.colors = [
+	  'lightseagreen',
+	  'forestgreen',
+	  'goldenrod',
+	  'dodgerblue',
+	  'darkorchid',
+	  'crimson'
+	];
 
-	  return function(fmt){
-	    fmt = coerce(fmt);
+	/**
+	 * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+	 * and the Firebug extension (any Firefox version) are known
+	 * to support "%c" CSS customizations.
+	 *
+	 * TODO: add a `localStorage` variable to explicitly enable/disable colors
+	 */
 
-	    var curr = new Date;
-	    var ms = curr - (debug[name] || curr);
-	    debug[name] = curr;
-
-	    fmt = name
-	      + ' '
-	      + fmt
-	      + ' +' + debug.humanize(ms);
-
-	    // This hackery is required for IE8
-	    // where `console.log` doesn't have 'apply'
-	    window.console
-	      && console.log
-	      && Function.prototype.apply.call(console.log, console, arguments);
-	  }
+	function useColors() {
+	  // is webkit? http://stackoverflow.com/a/16459606/376773
+	  return ('WebkitAppearance' in document.documentElement.style) ||
+	    // is firebug? http://stackoverflow.com/a/398120/376773
+	    (window.console && (console.firebug || (console.exception && console.table))) ||
+	    // is firefox >= v31?
+	    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+	    (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
 	}
 
 	/**
-	 * The currently active debug mode names.
+	 * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
 	 */
 
-	debug.names = [];
-	debug.skips = [];
+	exports.formatters.j = function(v) {
+	  return JSON.stringify(v);
+	};
+
 
 	/**
-	 * Enables a debug mode by name. This can include modes
-	 * separated by a colon and wildcards.
+	 * Colorize log arguments if enabled.
 	 *
-	 * @param {String} name
 	 * @api public
 	 */
 
-	debug.enable = function(name) {
-	  try {
-	    localStorage.debug = name;
-	  } catch(e){}
+	function formatArgs() {
+	  var args = arguments;
+	  var useColors = this.useColors;
 
-	  var split = (name || '').split(/[\s,]+/)
-	    , len = split.length;
+	  args[0] = (useColors ? '%c' : '')
+	    + this.namespace
+	    + (useColors ? ' %c' : ' ')
+	    + args[0]
+	    + (useColors ? '%c ' : ' ')
+	    + '+' + exports.humanize(this.diff);
+
+	  if (!useColors) return args;
+
+	  var c = 'color: ' + this.color;
+	  args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
+
+	  // the final "%c" is somewhat tricky, because there could be other
+	  // arguments passed either before or after the %c, so we need to
+	  // figure out the correct index to insert the CSS into
+	  var index = 0;
+	  var lastC = 0;
+	  args[0].replace(/%[a-z%]/g, function(match) {
+	    if ('%%' === match) return;
+	    index++;
+	    if ('%c' === match) {
+	      // we only are interested in the *last* %c
+	      // (the user may have provided their own)
+	      lastC = index;
+	    }
+	  });
+
+	  args.splice(lastC, 0, c);
+	  return args;
+	}
+
+	/**
+	 * Invokes `console.log()` when available.
+	 * No-op when `console.log` is not a "function".
+	 *
+	 * @api public
+	 */
+
+	function log() {
+	  // this hackery is required for IE8/9, where
+	  // the `console.log` function doesn't have 'apply'
+	  return 'object' === typeof console
+	    && console.log
+	    && Function.prototype.apply.call(console.log, console, arguments);
+	}
+
+	/**
+	 * Save `namespaces`.
+	 *
+	 * @param {String} namespaces
+	 * @api private
+	 */
+
+	function save(namespaces) {
+	  try {
+	    if (null == namespaces) {
+	      exports.storage.removeItem('debug');
+	    } else {
+	      exports.storage.debug = namespaces;
+	    }
+	  } catch(e) {}
+	}
+
+	/**
+	 * Load `namespaces`.
+	 *
+	 * @return {String} returns the previously persisted debug modes
+	 * @api private
+	 */
+
+	function load() {
+	  var r;
+	  try {
+	    r = exports.storage.debug;
+	  } catch(e) {}
+	  return r;
+	}
+
+	/**
+	 * Enable namespaces listed in `localStorage.debug` initially.
+	 */
+
+	exports.enable(load());
+
+	/**
+	 * Localstorage attempts to return the localstorage.
+	 *
+	 * This is necessary because safari throws
+	 * when a user disables cookies/localstorage
+	 * and you attempt to access it.
+	 *
+	 * @return {LocalStorage}
+	 * @api private
+	 */
+
+	function localstorage(){
+	  try {
+	    return window.localStorage;
+	  } catch (e) {}
+	}
+
+
+/***/ },
+/* 163 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * This is the common logic for both the Node.js and web browser
+	 * implementations of `debug()`.
+	 *
+	 * Expose `debug()` as the module.
+	 */
+
+	exports = module.exports = debug;
+	exports.coerce = coerce;
+	exports.disable = disable;
+	exports.enable = enable;
+	exports.enabled = enabled;
+	exports.humanize = __webpack_require__(164);
+
+	/**
+	 * The currently active debug mode names, and names to skip.
+	 */
+
+	exports.names = [];
+	exports.skips = [];
+
+	/**
+	 * Map of special "%n" handling functions, for the debug "format" argument.
+	 *
+	 * Valid key names are a single, lowercased letter, i.e. "n".
+	 */
+
+	exports.formatters = {};
+
+	/**
+	 * Previously assigned color.
+	 */
+
+	var prevColor = 0;
+
+	/**
+	 * Previous log timestamp.
+	 */
+
+	var prevTime;
+
+	/**
+	 * Select a color.
+	 *
+	 * @return {Number}
+	 * @api private
+	 */
+
+	function selectColor() {
+	  return exports.colors[prevColor++ % exports.colors.length];
+	}
+
+	/**
+	 * Create a debugger with the given `namespace`.
+	 *
+	 * @param {String} namespace
+	 * @return {Function}
+	 * @api public
+	 */
+
+	function debug(namespace) {
+
+	  // define the `disabled` version
+	  function disabled() {
+	  }
+	  disabled.enabled = false;
+
+	  // define the `enabled` version
+	  function enabled() {
+
+	    var self = enabled;
+
+	    // set `diff` timestamp
+	    var curr = +new Date();
+	    var ms = curr - (prevTime || curr);
+	    self.diff = ms;
+	    self.prev = prevTime;
+	    self.curr = curr;
+	    prevTime = curr;
+
+	    // add the `color` if not set
+	    if (null == self.useColors) self.useColors = exports.useColors();
+	    if (null == self.color && self.useColors) self.color = selectColor();
+
+	    var args = Array.prototype.slice.call(arguments);
+
+	    args[0] = exports.coerce(args[0]);
+
+	    if ('string' !== typeof args[0]) {
+	      // anything else let's inspect with %o
+	      args = ['%o'].concat(args);
+	    }
+
+	    // apply any `formatters` transformations
+	    var index = 0;
+	    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
+	      // if we encounter an escaped % then don't increase the array index
+	      if (match === '%%') return match;
+	      index++;
+	      var formatter = exports.formatters[format];
+	      if ('function' === typeof formatter) {
+	        var val = args[index];
+	        match = formatter.call(self, val);
+
+	        // now we need to remove `args[index]` since it's inlined in the `format`
+	        args.splice(index, 1);
+	        index--;
+	      }
+	      return match;
+	    });
+
+	    if ('function' === typeof exports.formatArgs) {
+	      args = exports.formatArgs.apply(self, args);
+	    }
+	    var logFn = enabled.log || exports.log || console.log.bind(console);
+	    logFn.apply(self, args);
+	  }
+	  enabled.enabled = true;
+
+	  var fn = exports.enabled(namespace) ? enabled : disabled;
+
+	  fn.namespace = namespace;
+
+	  return fn;
+	}
+
+	/**
+	 * Enables a debug mode by namespaces. This can include modes
+	 * separated by a colon and wildcards.
+	 *
+	 * @param {String} namespaces
+	 * @api public
+	 */
+
+	function enable(namespaces) {
+	  exports.save(namespaces);
+
+	  var split = (namespaces || '').split(/[\s,]+/);
+	  var len = split.length;
 
 	  for (var i = 0; i < len; i++) {
-	    name = split[i].replace('*', '.*?');
-	    if (name[0] === '-') {
-	      debug.skips.push(new RegExp('^' + name.substr(1) + '$'));
-	    }
-	    else {
-	      debug.names.push(new RegExp('^' + name + '$'));
+	    if (!split[i]) continue; // ignore empty strings
+	    namespaces = split[i].replace(/\*/g, '.*?');
+	    if (namespaces[0] === '-') {
+	      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+	    } else {
+	      exports.names.push(new RegExp('^' + namespaces + '$'));
 	    }
 	  }
-	};
+	}
 
 	/**
 	 * Disable debug output.
@@ -20178,28 +20451,9 @@
 	 * @api public
 	 */
 
-	debug.disable = function(){
-	  debug.enable('');
-	};
-
-	/**
-	 * Humanize the given `ms`.
-	 *
-	 * @param {Number} m
-	 * @return {String}
-	 * @api private
-	 */
-
-	debug.humanize = function(ms) {
-	  var sec = 1000
-	    , min = 60 * 1000
-	    , hour = 60 * min;
-
-	  if (ms >= hour) return (ms / hour).toFixed(1) + 'h';
-	  if (ms >= min) return (ms / min).toFixed(1) + 'm';
-	  if (ms >= sec) return (ms / sec | 0) + 's';
-	  return ms + 'ms';
-	};
+	function disable() {
+	  exports.enable('');
+	}
 
 	/**
 	 * Returns true if the given mode name is enabled, false otherwise.
@@ -20209,22 +20463,27 @@
 	 * @api public
 	 */
 
-	debug.enabled = function(name) {
-	  for (var i = 0, len = debug.skips.length; i < len; i++) {
-	    if (debug.skips[i].test(name)) {
+	function enabled(name) {
+	  var i, len;
+	  for (i = 0, len = exports.skips.length; i < len; i++) {
+	    if (exports.skips[i].test(name)) {
 	      return false;
 	    }
 	  }
-	  for (var i = 0, len = debug.names.length; i < len; i++) {
-	    if (debug.names[i].test(name)) {
+	  for (i = 0, len = exports.names.length; i < len; i++) {
+	    if (exports.names[i].test(name)) {
 	      return true;
 	    }
 	  }
 	  return false;
-	};
+	}
 
 	/**
 	 * Coerce `val`.
+	 *
+	 * @param {Mixed} val
+	 * @return {Mixed}
+	 * @api private
 	 */
 
 	function coerce(val) {
@@ -20232,15 +20491,140 @@
 	  return val;
 	}
 
-	// persist
-
-	try {
-	  if (window.localStorage) debug.enable(localStorage.debug);
-	} catch(e){}
-
 
 /***/ },
 /* 164 */
+/***/ function(module, exports) {
+
+	/**
+	 * Helpers.
+	 */
+
+	var s = 1000;
+	var m = s * 60;
+	var h = m * 60;
+	var d = h * 24;
+	var y = d * 365.25;
+
+	/**
+	 * Parse or format the given `val`.
+	 *
+	 * Options:
+	 *
+	 *  - `long` verbose formatting [false]
+	 *
+	 * @param {String|Number} val
+	 * @param {Object} options
+	 * @return {String|Number}
+	 * @api public
+	 */
+
+	module.exports = function(val, options){
+	  options = options || {};
+	  if ('string' == typeof val) return parse(val);
+	  return options.long
+	    ? long(val)
+	    : short(val);
+	};
+
+	/**
+	 * Parse the given `str` and return milliseconds.
+	 *
+	 * @param {String} str
+	 * @return {Number}
+	 * @api private
+	 */
+
+	function parse(str) {
+	  str = '' + str;
+	  if (str.length > 10000) return;
+	  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str);
+	  if (!match) return;
+	  var n = parseFloat(match[1]);
+	  var type = (match[2] || 'ms').toLowerCase();
+	  switch (type) {
+	    case 'years':
+	    case 'year':
+	    case 'yrs':
+	    case 'yr':
+	    case 'y':
+	      return n * y;
+	    case 'days':
+	    case 'day':
+	    case 'd':
+	      return n * d;
+	    case 'hours':
+	    case 'hour':
+	    case 'hrs':
+	    case 'hr':
+	    case 'h':
+	      return n * h;
+	    case 'minutes':
+	    case 'minute':
+	    case 'mins':
+	    case 'min':
+	    case 'm':
+	      return n * m;
+	    case 'seconds':
+	    case 'second':
+	    case 'secs':
+	    case 'sec':
+	    case 's':
+	      return n * s;
+	    case 'milliseconds':
+	    case 'millisecond':
+	    case 'msecs':
+	    case 'msec':
+	    case 'ms':
+	      return n;
+	  }
+	}
+
+	/**
+	 * Short format for `ms`.
+	 *
+	 * @param {Number} ms
+	 * @return {String}
+	 * @api private
+	 */
+
+	function short(ms) {
+	  if (ms >= d) return Math.round(ms / d) + 'd';
+	  if (ms >= h) return Math.round(ms / h) + 'h';
+	  if (ms >= m) return Math.round(ms / m) + 'm';
+	  if (ms >= s) return Math.round(ms / s) + 's';
+	  return ms + 'ms';
+	}
+
+	/**
+	 * Long format for `ms`.
+	 *
+	 * @param {Number} ms
+	 * @return {String}
+	 * @api private
+	 */
+
+	function long(ms) {
+	  return plural(ms, d, 'day')
+	    || plural(ms, h, 'hour')
+	    || plural(ms, m, 'minute')
+	    || plural(ms, s, 'second')
+	    || ms + ' ms';
+	}
+
+	/**
+	 * Pluralization helper.
+	 */
+
+	function plural(ms, n, name) {
+	  if (ms < n) return;
+	  if (ms < n * 1.5) return Math.floor(ms / n) + ' ' + name;
+	  return Math.ceil(ms / n) + ' ' + name + 's';
+	}
+
+
+/***/ },
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -20248,12 +20632,12 @@
 	 * Module dependencies.
 	 */
 
-	var debug = __webpack_require__(163)('socket.io-parser');
-	var json = __webpack_require__(165);
-	var isArray = __webpack_require__(167);
-	var Emitter = __webpack_require__(168);
-	var binary = __webpack_require__(169);
-	var isBuf = __webpack_require__(170);
+	var debug = __webpack_require__(162)('socket.io-parser');
+	var json = __webpack_require__(166);
+	var isArray = __webpack_require__(169);
+	var Emitter = __webpack_require__(170);
+	var binary = __webpack_require__(171);
+	var isBuf = __webpack_require__(172);
 
 	/**
 	 * Protocol version.
@@ -20646,861 +21030,902 @@
 
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;/*! JSON v3.2.6 | http://bestiejs.github.io/json3 | Copyright 2012-2013, Kit Cambridge | http://kit.mit-license.org */
-	;(function (window) {
-	  // Convenience aliases.
-	  var getClass = {}.toString, isProperty, forEach, undef;
-
+	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
+	;(function () {
 	  // Detect the `define` function exposed by asynchronous module loaders. The
 	  // strict `define` check is necessary for compatibility with `r.js`.
-	  var isLoader = "function" === "function" && __webpack_require__(166);
+	  var isLoader = "function" === "function" && __webpack_require__(168);
 
-	  // Detect native implementations.
-	  var nativeJSON = typeof JSON == "object" && JSON;
+	  // A set of types used to distinguish objects from primitives.
+	  var objectTypes = {
+	    "function": true,
+	    "object": true
+	  };
 
-	  // Set up the JSON 3 namespace, preferring the CommonJS `exports` object if
-	  // available.
-	  var JSON3 = typeof exports == "object" && exports && !exports.nodeType && exports;
+	  // Detect the `exports` object exposed by CommonJS implementations.
+	  var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
 
-	  if (JSON3 && nativeJSON) {
-	    // Explicitly delegate to the native `stringify` and `parse`
-	    // implementations in CommonJS environments.
-	    JSON3.stringify = nativeJSON.stringify;
-	    JSON3.parse = nativeJSON.parse;
-	  } else {
-	    // Export for web browsers, JavaScript engines, and asynchronous module
-	    // loaders, using the global `JSON` object if available.
-	    JSON3 = window.JSON = nativeJSON || {};
+	  // Use the `global` object exposed by Node (including Browserify via
+	  // `insert-module-globals`), Narwhal, and Ringo as the default context,
+	  // and the `window` object in browsers. Rhino exports a `global` function
+	  // instead.
+	  var root = objectTypes[typeof window] && window || this,
+	      freeGlobal = freeExports && objectTypes[typeof module] && module && !module.nodeType && typeof global == "object" && global;
+
+	  if (freeGlobal && (freeGlobal["global"] === freeGlobal || freeGlobal["window"] === freeGlobal || freeGlobal["self"] === freeGlobal)) {
+	    root = freeGlobal;
 	  }
 
-	  // Test the `Date#getUTC*` methods. Based on work by @Yaffle.
-	  var isExtended = new Date(-3509827334573292);
-	  try {
-	    // The `getUTCFullYear`, `Month`, and `Date` methods return nonsensical
-	    // results for certain dates in Opera >= 10.53.
-	    isExtended = isExtended.getUTCFullYear() == -109252 && isExtended.getUTCMonth() === 0 && isExtended.getUTCDate() === 1 &&
-	      // Safari < 2.0.2 stores the internal millisecond time value correctly,
-	      // but clips the values returned by the date methods to the range of
-	      // signed 32-bit integers ([-2 ** 31, 2 ** 31 - 1]).
-	      isExtended.getUTCHours() == 10 && isExtended.getUTCMinutes() == 37 && isExtended.getUTCSeconds() == 6 && isExtended.getUTCMilliseconds() == 708;
-	  } catch (exception) {}
+	  // Public: Initializes JSON 3 using the given `context` object, attaching the
+	  // `stringify` and `parse` functions to the specified `exports` object.
+	  function runInContext(context, exports) {
+	    context || (context = root["Object"]());
+	    exports || (exports = root["Object"]());
 
-	  // Internal: Determines whether the native `JSON.stringify` and `parse`
-	  // implementations are spec-compliant. Based on work by Ken Snyder.
-	  function has(name) {
-	    if (has[name] !== undef) {
-	      // Return cached feature test result.
-	      return has[name];
+	    // Native constructor aliases.
+	    var Number = context["Number"] || root["Number"],
+	        String = context["String"] || root["String"],
+	        Object = context["Object"] || root["Object"],
+	        Date = context["Date"] || root["Date"],
+	        SyntaxError = context["SyntaxError"] || root["SyntaxError"],
+	        TypeError = context["TypeError"] || root["TypeError"],
+	        Math = context["Math"] || root["Math"],
+	        nativeJSON = context["JSON"] || root["JSON"];
+
+	    // Delegate to the native `stringify` and `parse` implementations.
+	    if (typeof nativeJSON == "object" && nativeJSON) {
+	      exports.stringify = nativeJSON.stringify;
+	      exports.parse = nativeJSON.parse;
 	    }
 
-	    var isSupported;
-	    if (name == "bug-string-char-index") {
-	      // IE <= 7 doesn't support accessing string characters using square
-	      // bracket notation. IE 8 only supports this for primitives.
-	      isSupported = "a"[0] != "a";
-	    } else if (name == "json") {
-	      // Indicates whether both `JSON.stringify` and `JSON.parse` are
-	      // supported.
-	      isSupported = has("json-stringify") && has("json-parse");
-	    } else {
-	      var value, serialized = '{"a":[1,true,false,null,"\\u0000\\b\\n\\f\\r\\t"]}';
-	      // Test `JSON.stringify`.
-	      if (name == "json-stringify") {
-	        var stringify = JSON3.stringify, stringifySupported = typeof stringify == "function" && isExtended;
-	        if (stringifySupported) {
-	          // A test function object with a custom `toJSON` method.
-	          (value = function () {
-	            return 1;
-	          }).toJSON = value;
-	          try {
-	            stringifySupported =
-	              // Firefox 3.1b1 and b2 serialize string, number, and boolean
-	              // primitives as object literals.
-	              stringify(0) === "0" &&
-	              // FF 3.1b1, b2, and JSON 2 serialize wrapped primitives as object
-	              // literals.
-	              stringify(new Number()) === "0" &&
-	              stringify(new String()) == '""' &&
-	              // FF 3.1b1, 2 throw an error if the value is `null`, `undefined`, or
-	              // does not define a canonical JSON representation (this applies to
-	              // objects with `toJSON` properties as well, *unless* they are nested
-	              // within an object or array).
-	              stringify(getClass) === undef &&
-	              // IE 8 serializes `undefined` as `"undefined"`. Safari <= 5.1.7 and
-	              // FF 3.1b3 pass this test.
-	              stringify(undef) === undef &&
-	              // Safari <= 5.1.7 and FF 3.1b3 throw `Error`s and `TypeError`s,
-	              // respectively, if the value is omitted entirely.
-	              stringify() === undef &&
-	              // FF 3.1b1, 2 throw an error if the given value is not a number,
-	              // string, array, object, Boolean, or `null` literal. This applies to
-	              // objects with custom `toJSON` methods as well, unless they are nested
-	              // inside object or array literals. YUI 3.0.0b1 ignores custom `toJSON`
-	              // methods entirely.
-	              stringify(value) === "1" &&
-	              stringify([value]) == "[1]" &&
-	              // Prototype <= 1.6.1 serializes `[undefined]` as `"[]"` instead of
-	              // `"[null]"`.
-	              stringify([undef]) == "[null]" &&
-	              // YUI 3.0.0b1 fails to serialize `null` literals.
-	              stringify(null) == "null" &&
-	              // FF 3.1b1, 2 halts serialization if an array contains a function:
-	              // `[1, true, getClass, 1]` serializes as "[1,true,],". FF 3.1b3
-	              // elides non-JSON values from objects and arrays, unless they
-	              // define custom `toJSON` methods.
-	              stringify([undef, getClass, null]) == "[null,null,null]" &&
-	              // Simple serialization test. FF 3.1b1 uses Unicode escape sequences
-	              // where character escape codes are expected (e.g., `\b` => `\u0008`).
-	              stringify({ "a": [value, true, false, null, "\x00\b\n\f\r\t"] }) == serialized &&
-	              // FF 3.1b1 and b2 ignore the `filter` and `width` arguments.
-	              stringify(null, value) === "1" &&
-	              stringify([1, 2], null, 1) == "[\n 1,\n 2\n]" &&
-	              // JSON 2, Prototype <= 1.7, and older WebKit builds incorrectly
-	              // serialize extended years.
-	              stringify(new Date(-8.64e15)) == '"-271821-04-20T00:00:00.000Z"' &&
-	              // The milliseconds are optional in ES 5, but required in 5.1.
-	              stringify(new Date(8.64e15)) == '"+275760-09-13T00:00:00.000Z"' &&
-	              // Firefox <= 11.0 incorrectly serializes years prior to 0 as negative
-	              // four-digit years instead of six-digit years. Credits: @Yaffle.
-	              stringify(new Date(-621987552e5)) == '"-000001-01-01T00:00:00.000Z"' &&
-	              // Safari <= 5.1.5 and Opera >= 10.53 incorrectly serialize millisecond
-	              // values less than 1000. Credits: @Yaffle.
-	              stringify(new Date(-1)) == '"1969-12-31T23:59:59.999Z"';
-	          } catch (exception) {
-	            stringifySupported = false;
-	          }
-	        }
-	        isSupported = stringifySupported;
+	    // Convenience aliases.
+	    var objectProto = Object.prototype,
+	        getClass = objectProto.toString,
+	        isProperty, forEach, undef;
+
+	    // Test the `Date#getUTC*` methods. Based on work by @Yaffle.
+	    var isExtended = new Date(-3509827334573292);
+	    try {
+	      // The `getUTCFullYear`, `Month`, and `Date` methods return nonsensical
+	      // results for certain dates in Opera >= 10.53.
+	      isExtended = isExtended.getUTCFullYear() == -109252 && isExtended.getUTCMonth() === 0 && isExtended.getUTCDate() === 1 &&
+	        // Safari < 2.0.2 stores the internal millisecond time value correctly,
+	        // but clips the values returned by the date methods to the range of
+	        // signed 32-bit integers ([-2 ** 31, 2 ** 31 - 1]).
+	        isExtended.getUTCHours() == 10 && isExtended.getUTCMinutes() == 37 && isExtended.getUTCSeconds() == 6 && isExtended.getUTCMilliseconds() == 708;
+	    } catch (exception) {}
+
+	    // Internal: Determines whether the native `JSON.stringify` and `parse`
+	    // implementations are spec-compliant. Based on work by Ken Snyder.
+	    function has(name) {
+	      if (has[name] !== undef) {
+	        // Return cached feature test result.
+	        return has[name];
 	      }
-	      // Test `JSON.parse`.
-	      if (name == "json-parse") {
-	        var parse = JSON3.parse;
-	        if (typeof parse == "function") {
-	          try {
-	            // FF 3.1b1, b2 will throw an exception if a bare literal is provided.
-	            // Conforming implementations should also coerce the initial argument to
-	            // a string prior to parsing.
-	            if (parse("0") === 0 && !parse(false)) {
-	              // Simple parsing test.
-	              value = parse(serialized);
-	              var parseSupported = value["a"].length == 5 && value["a"][0] === 1;
-	              if (parseSupported) {
-	                try {
-	                  // Safari <= 5.1.2 and FF 3.1b1 allow unescaped tabs in strings.
-	                  parseSupported = !parse('"\t"');
-	                } catch (exception) {}
+	      var isSupported;
+	      if (name == "bug-string-char-index") {
+	        // IE <= 7 doesn't support accessing string characters using square
+	        // bracket notation. IE 8 only supports this for primitives.
+	        isSupported = "a"[0] != "a";
+	      } else if (name == "json") {
+	        // Indicates whether both `JSON.stringify` and `JSON.parse` are
+	        // supported.
+	        isSupported = has("json-stringify") && has("json-parse");
+	      } else {
+	        var value, serialized = '{"a":[1,true,false,null,"\\u0000\\b\\n\\f\\r\\t"]}';
+	        // Test `JSON.stringify`.
+	        if (name == "json-stringify") {
+	          var stringify = exports.stringify, stringifySupported = typeof stringify == "function" && isExtended;
+	          if (stringifySupported) {
+	            // A test function object with a custom `toJSON` method.
+	            (value = function () {
+	              return 1;
+	            }).toJSON = value;
+	            try {
+	              stringifySupported =
+	                // Firefox 3.1b1 and b2 serialize string, number, and boolean
+	                // primitives as object literals.
+	                stringify(0) === "0" &&
+	                // FF 3.1b1, b2, and JSON 2 serialize wrapped primitives as object
+	                // literals.
+	                stringify(new Number()) === "0" &&
+	                stringify(new String()) == '""' &&
+	                // FF 3.1b1, 2 throw an error if the value is `null`, `undefined`, or
+	                // does not define a canonical JSON representation (this applies to
+	                // objects with `toJSON` properties as well, *unless* they are nested
+	                // within an object or array).
+	                stringify(getClass) === undef &&
+	                // IE 8 serializes `undefined` as `"undefined"`. Safari <= 5.1.7 and
+	                // FF 3.1b3 pass this test.
+	                stringify(undef) === undef &&
+	                // Safari <= 5.1.7 and FF 3.1b3 throw `Error`s and `TypeError`s,
+	                // respectively, if the value is omitted entirely.
+	                stringify() === undef &&
+	                // FF 3.1b1, 2 throw an error if the given value is not a number,
+	                // string, array, object, Boolean, or `null` literal. This applies to
+	                // objects with custom `toJSON` methods as well, unless they are nested
+	                // inside object or array literals. YUI 3.0.0b1 ignores custom `toJSON`
+	                // methods entirely.
+	                stringify(value) === "1" &&
+	                stringify([value]) == "[1]" &&
+	                // Prototype <= 1.6.1 serializes `[undefined]` as `"[]"` instead of
+	                // `"[null]"`.
+	                stringify([undef]) == "[null]" &&
+	                // YUI 3.0.0b1 fails to serialize `null` literals.
+	                stringify(null) == "null" &&
+	                // FF 3.1b1, 2 halts serialization if an array contains a function:
+	                // `[1, true, getClass, 1]` serializes as "[1,true,],". FF 3.1b3
+	                // elides non-JSON values from objects and arrays, unless they
+	                // define custom `toJSON` methods.
+	                stringify([undef, getClass, null]) == "[null,null,null]" &&
+	                // Simple serialization test. FF 3.1b1 uses Unicode escape sequences
+	                // where character escape codes are expected (e.g., `\b` => `\u0008`).
+	                stringify({ "a": [value, true, false, null, "\x00\b\n\f\r\t"] }) == serialized &&
+	                // FF 3.1b1 and b2 ignore the `filter` and `width` arguments.
+	                stringify(null, value) === "1" &&
+	                stringify([1, 2], null, 1) == "[\n 1,\n 2\n]" &&
+	                // JSON 2, Prototype <= 1.7, and older WebKit builds incorrectly
+	                // serialize extended years.
+	                stringify(new Date(-8.64e15)) == '"-271821-04-20T00:00:00.000Z"' &&
+	                // The milliseconds are optional in ES 5, but required in 5.1.
+	                stringify(new Date(8.64e15)) == '"+275760-09-13T00:00:00.000Z"' &&
+	                // Firefox <= 11.0 incorrectly serializes years prior to 0 as negative
+	                // four-digit years instead of six-digit years. Credits: @Yaffle.
+	                stringify(new Date(-621987552e5)) == '"-000001-01-01T00:00:00.000Z"' &&
+	                // Safari <= 5.1.5 and Opera >= 10.53 incorrectly serialize millisecond
+	                // values less than 1000. Credits: @Yaffle.
+	                stringify(new Date(-1)) == '"1969-12-31T23:59:59.999Z"';
+	            } catch (exception) {
+	              stringifySupported = false;
+	            }
+	          }
+	          isSupported = stringifySupported;
+	        }
+	        // Test `JSON.parse`.
+	        if (name == "json-parse") {
+	          var parse = exports.parse;
+	          if (typeof parse == "function") {
+	            try {
+	              // FF 3.1b1, b2 will throw an exception if a bare literal is provided.
+	              // Conforming implementations should also coerce the initial argument to
+	              // a string prior to parsing.
+	              if (parse("0") === 0 && !parse(false)) {
+	                // Simple parsing test.
+	                value = parse(serialized);
+	                var parseSupported = value["a"].length == 5 && value["a"][0] === 1;
 	                if (parseSupported) {
 	                  try {
-	                    // FF 4.0 and 4.0.1 allow leading `+` signs and leading
-	                    // decimal points. FF 4.0, 4.0.1, and IE 9-10 also allow
-	                    // certain octal literals.
-	                    parseSupported = parse("01") !== 1;
+	                    // Safari <= 5.1.2 and FF 3.1b1 allow unescaped tabs in strings.
+	                    parseSupported = !parse('"\t"');
 	                  } catch (exception) {}
-	                }
-	                if (parseSupported) {
-	                  try {
-	                    // FF 4.0, 4.0.1, and Rhino 1.7R3-R4 allow trailing decimal
-	                    // points. These environments, along with FF 3.1b1 and 2,
-	                    // also allow trailing commas in JSON objects and arrays.
-	                    parseSupported = parse("1.") !== 1;
-	                  } catch (exception) {}
+	                  if (parseSupported) {
+	                    try {
+	                      // FF 4.0 and 4.0.1 allow leading `+` signs and leading
+	                      // decimal points. FF 4.0, 4.0.1, and IE 9-10 also allow
+	                      // certain octal literals.
+	                      parseSupported = parse("01") !== 1;
+	                    } catch (exception) {}
+	                  }
+	                  if (parseSupported) {
+	                    try {
+	                      // FF 4.0, 4.0.1, and Rhino 1.7R3-R4 allow trailing decimal
+	                      // points. These environments, along with FF 3.1b1 and 2,
+	                      // also allow trailing commas in JSON objects and arrays.
+	                      parseSupported = parse("1.") !== 1;
+	                    } catch (exception) {}
+	                  }
 	                }
 	              }
+	            } catch (exception) {
+	              parseSupported = false;
 	            }
-	          } catch (exception) {
-	            parseSupported = false;
+	          }
+	          isSupported = parseSupported;
+	        }
+	      }
+	      return has[name] = !!isSupported;
+	    }
+
+	    if (!has("json")) {
+	      // Common `[[Class]]` name aliases.
+	      var functionClass = "[object Function]",
+	          dateClass = "[object Date]",
+	          numberClass = "[object Number]",
+	          stringClass = "[object String]",
+	          arrayClass = "[object Array]",
+	          booleanClass = "[object Boolean]";
+
+	      // Detect incomplete support for accessing string characters by index.
+	      var charIndexBuggy = has("bug-string-char-index");
+
+	      // Define additional utility methods if the `Date` methods are buggy.
+	      if (!isExtended) {
+	        var floor = Math.floor;
+	        // A mapping between the months of the year and the number of days between
+	        // January 1st and the first of the respective month.
+	        var Months = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+	        // Internal: Calculates the number of days between the Unix epoch and the
+	        // first day of the given month.
+	        var getDay = function (year, month) {
+	          return Months[month] + 365 * (year - 1970) + floor((year - 1969 + (month = +(month > 1))) / 4) - floor((year - 1901 + month) / 100) + floor((year - 1601 + month) / 400);
+	        };
+	      }
+
+	      // Internal: Determines if a property is a direct property of the given
+	      // object. Delegates to the native `Object#hasOwnProperty` method.
+	      if (!(isProperty = objectProto.hasOwnProperty)) {
+	        isProperty = function (property) {
+	          var members = {}, constructor;
+	          if ((members.__proto__ = null, members.__proto__ = {
+	            // The *proto* property cannot be set multiple times in recent
+	            // versions of Firefox and SeaMonkey.
+	            "toString": 1
+	          }, members).toString != getClass) {
+	            // Safari <= 2.0.3 doesn't implement `Object#hasOwnProperty`, but
+	            // supports the mutable *proto* property.
+	            isProperty = function (property) {
+	              // Capture and break the object's prototype chain (see section 8.6.2
+	              // of the ES 5.1 spec). The parenthesized expression prevents an
+	              // unsafe transformation by the Closure Compiler.
+	              var original = this.__proto__, result = property in (this.__proto__ = null, this);
+	              // Restore the original prototype chain.
+	              this.__proto__ = original;
+	              return result;
+	            };
+	          } else {
+	            // Capture a reference to the top-level `Object` constructor.
+	            constructor = members.constructor;
+	            // Use the `constructor` property to simulate `Object#hasOwnProperty` in
+	            // other environments.
+	            isProperty = function (property) {
+	              var parent = (this.constructor || constructor).prototype;
+	              return property in this && !(property in parent && this[property] === parent[property]);
+	            };
+	          }
+	          members = null;
+	          return isProperty.call(this, property);
+	        };
+	      }
+
+	      // Internal: Normalizes the `for...in` iteration algorithm across
+	      // environments. Each enumerated key is yielded to a `callback` function.
+	      forEach = function (object, callback) {
+	        var size = 0, Properties, members, property;
+
+	        // Tests for bugs in the current environment's `for...in` algorithm. The
+	        // `valueOf` property inherits the non-enumerable flag from
+	        // `Object.prototype` in older versions of IE, Netscape, and Mozilla.
+	        (Properties = function () {
+	          this.valueOf = 0;
+	        }).prototype.valueOf = 0;
+
+	        // Iterate over a new instance of the `Properties` class.
+	        members = new Properties();
+	        for (property in members) {
+	          // Ignore all properties inherited from `Object.prototype`.
+	          if (isProperty.call(members, property)) {
+	            size++;
 	          }
 	        }
-	        isSupported = parseSupported;
-	      }
-	    }
-	    return has[name] = !!isSupported;
-	  }
+	        Properties = members = null;
 
-	  if (!has("json")) {
-	    // Common `[[Class]]` name aliases.
-	    var functionClass = "[object Function]";
-	    var dateClass = "[object Date]";
-	    var numberClass = "[object Number]";
-	    var stringClass = "[object String]";
-	    var arrayClass = "[object Array]";
-	    var booleanClass = "[object Boolean]";
-
-	    // Detect incomplete support for accessing string characters by index.
-	    var charIndexBuggy = has("bug-string-char-index");
-
-	    // Define additional utility methods if the `Date` methods are buggy.
-	    if (!isExtended) {
-	      var floor = Math.floor;
-	      // A mapping between the months of the year and the number of days between
-	      // January 1st and the first of the respective month.
-	      var Months = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
-	      // Internal: Calculates the number of days between the Unix epoch and the
-	      // first day of the given month.
-	      var getDay = function (year, month) {
-	        return Months[month] + 365 * (year - 1970) + floor((year - 1969 + (month = +(month > 1))) / 4) - floor((year - 1901 + month) / 100) + floor((year - 1601 + month) / 400);
-	      };
-	    }
-
-	    // Internal: Determines if a property is a direct property of the given
-	    // object. Delegates to the native `Object#hasOwnProperty` method.
-	    if (!(isProperty = {}.hasOwnProperty)) {
-	      isProperty = function (property) {
-	        var members = {}, constructor;
-	        if ((members.__proto__ = null, members.__proto__ = {
-	          // The *proto* property cannot be set multiple times in recent
-	          // versions of Firefox and SeaMonkey.
-	          "toString": 1
-	        }, members).toString != getClass) {
-	          // Safari <= 2.0.3 doesn't implement `Object#hasOwnProperty`, but
-	          // supports the mutable *proto* property.
-	          isProperty = function (property) {
-	            // Capture and break the object's prototype chain (see section 8.6.2
-	            // of the ES 5.1 spec). The parenthesized expression prevents an
-	            // unsafe transformation by the Closure Compiler.
-	            var original = this.__proto__, result = property in (this.__proto__ = null, this);
-	            // Restore the original prototype chain.
-	            this.__proto__ = original;
-	            return result;
+	        // Normalize the iteration algorithm.
+	        if (!size) {
+	          // A list of non-enumerable properties inherited from `Object.prototype`.
+	          members = ["valueOf", "toString", "toLocaleString", "propertyIsEnumerable", "isPrototypeOf", "hasOwnProperty", "constructor"];
+	          // IE <= 8, Mozilla 1.0, and Netscape 6.2 ignore shadowed non-enumerable
+	          // properties.
+	          forEach = function (object, callback) {
+	            var isFunction = getClass.call(object) == functionClass, property, length;
+	            var hasProperty = !isFunction && typeof object.constructor != "function" && objectTypes[typeof object.hasOwnProperty] && object.hasOwnProperty || isProperty;
+	            for (property in object) {
+	              // Gecko <= 1.0 enumerates the `prototype` property of functions under
+	              // certain conditions; IE does not.
+	              if (!(isFunction && property == "prototype") && hasProperty.call(object, property)) {
+	                callback(property);
+	              }
+	            }
+	            // Manually invoke the callback for each non-enumerable property.
+	            for (length = members.length; property = members[--length]; hasProperty.call(object, property) && callback(property));
+	          };
+	        } else if (size == 2) {
+	          // Safari <= 2.0.4 enumerates shadowed properties twice.
+	          forEach = function (object, callback) {
+	            // Create a set of iterated properties.
+	            var members = {}, isFunction = getClass.call(object) == functionClass, property;
+	            for (property in object) {
+	              // Store each property name to prevent double enumeration. The
+	              // `prototype` property of functions is not enumerated due to cross-
+	              // environment inconsistencies.
+	              if (!(isFunction && property == "prototype") && !isProperty.call(members, property) && (members[property] = 1) && isProperty.call(object, property)) {
+	                callback(property);
+	              }
+	            }
 	          };
 	        } else {
-	          // Capture a reference to the top-level `Object` constructor.
-	          constructor = members.constructor;
-	          // Use the `constructor` property to simulate `Object#hasOwnProperty` in
-	          // other environments.
-	          isProperty = function (property) {
-	            var parent = (this.constructor || constructor).prototype;
-	            return property in this && !(property in parent && this[property] === parent[property]);
+	          // No bugs detected; use the standard `for...in` algorithm.
+	          forEach = function (object, callback) {
+	            var isFunction = getClass.call(object) == functionClass, property, isConstructor;
+	            for (property in object) {
+	              if (!(isFunction && property == "prototype") && isProperty.call(object, property) && !(isConstructor = property === "constructor")) {
+	                callback(property);
+	              }
+	            }
+	            // Manually invoke the callback for the `constructor` property due to
+	            // cross-environment inconsistencies.
+	            if (isConstructor || isProperty.call(object, (property = "constructor"))) {
+	              callback(property);
+	            }
 	          };
 	        }
-	        members = null;
-	        return isProperty.call(this, property);
-	      };
-	    }
-
-	    // Internal: A set of primitive types used by `isHostType`.
-	    var PrimitiveTypes = {
-	      'boolean': 1,
-	      'number': 1,
-	      'string': 1,
-	      'undefined': 1
-	    };
-
-	    // Internal: Determines if the given object `property` value is a
-	    // non-primitive.
-	    var isHostType = function (object, property) {
-	      var type = typeof object[property];
-	      return type == 'object' ? !!object[property] : !PrimitiveTypes[type];
-	    };
-
-	    // Internal: Normalizes the `for...in` iteration algorithm across
-	    // environments. Each enumerated key is yielded to a `callback` function.
-	    forEach = function (object, callback) {
-	      var size = 0, Properties, members, property;
-
-	      // Tests for bugs in the current environment's `for...in` algorithm. The
-	      // `valueOf` property inherits the non-enumerable flag from
-	      // `Object.prototype` in older versions of IE, Netscape, and Mozilla.
-	      (Properties = function () {
-	        this.valueOf = 0;
-	      }).prototype.valueOf = 0;
-
-	      // Iterate over a new instance of the `Properties` class.
-	      members = new Properties();
-	      for (property in members) {
-	        // Ignore all properties inherited from `Object.prototype`.
-	        if (isProperty.call(members, property)) {
-	          size++;
-	        }
-	      }
-	      Properties = members = null;
-
-	      // Normalize the iteration algorithm.
-	      if (!size) {
-	        // A list of non-enumerable properties inherited from `Object.prototype`.
-	        members = ["valueOf", "toString", "toLocaleString", "propertyIsEnumerable", "isPrototypeOf", "hasOwnProperty", "constructor"];
-	        // IE <= 8, Mozilla 1.0, and Netscape 6.2 ignore shadowed non-enumerable
-	        // properties.
-	        forEach = function (object, callback) {
-	          var isFunction = getClass.call(object) == functionClass, property, length;
-	          var hasProperty = !isFunction && typeof object.constructor != 'function' && isHostType(object, 'hasOwnProperty') ? object.hasOwnProperty : isProperty;
-	          for (property in object) {
-	            // Gecko <= 1.0 enumerates the `prototype` property of functions under
-	            // certain conditions; IE does not.
-	            if (!(isFunction && property == "prototype") && hasProperty.call(object, property)) {
-	              callback(property);
-	            }
-	          }
-	          // Manually invoke the callback for each non-enumerable property.
-	          for (length = members.length; property = members[--length]; hasProperty.call(object, property) && callback(property));
-	        };
-	      } else if (size == 2) {
-	        // Safari <= 2.0.4 enumerates shadowed properties twice.
-	        forEach = function (object, callback) {
-	          // Create a set of iterated properties.
-	          var members = {}, isFunction = getClass.call(object) == functionClass, property;
-	          for (property in object) {
-	            // Store each property name to prevent double enumeration. The
-	            // `prototype` property of functions is not enumerated due to cross-
-	            // environment inconsistencies.
-	            if (!(isFunction && property == "prototype") && !isProperty.call(members, property) && (members[property] = 1) && isProperty.call(object, property)) {
-	              callback(property);
-	            }
-	          }
-	        };
-	      } else {
-	        // No bugs detected; use the standard `for...in` algorithm.
-	        forEach = function (object, callback) {
-	          var isFunction = getClass.call(object) == functionClass, property, isConstructor;
-	          for (property in object) {
-	            if (!(isFunction && property == "prototype") && isProperty.call(object, property) && !(isConstructor = property === "constructor")) {
-	              callback(property);
-	            }
-	          }
-	          // Manually invoke the callback for the `constructor` property due to
-	          // cross-environment inconsistencies.
-	          if (isConstructor || isProperty.call(object, (property = "constructor"))) {
-	            callback(property);
-	          }
-	        };
-	      }
-	      return forEach(object, callback);
-	    };
-
-	    // Public: Serializes a JavaScript `value` as a JSON string. The optional
-	    // `filter` argument may specify either a function that alters how object and
-	    // array members are serialized, or an array of strings and numbers that
-	    // indicates which properties should be serialized. The optional `width`
-	    // argument may be either a string or number that specifies the indentation
-	    // level of the output.
-	    if (!has("json-stringify")) {
-	      // Internal: A map of control characters and their escaped equivalents.
-	      var Escapes = {
-	        92: "\\\\",
-	        34: '\\"',
-	        8: "\\b",
-	        12: "\\f",
-	        10: "\\n",
-	        13: "\\r",
-	        9: "\\t"
+	        return forEach(object, callback);
 	      };
 
-	      // Internal: Converts `value` into a zero-padded string such that its
-	      // length is at least equal to `width`. The `width` must be <= 6.
-	      var leadingZeroes = "000000";
-	      var toPaddedString = function (width, value) {
-	        // The `|| 0` expression is necessary to work around a bug in
-	        // Opera <= 7.54u2 where `0 == -0`, but `String(-0) !== "0"`.
-	        return (leadingZeroes + (value || 0)).slice(-width);
-	      };
+	      // Public: Serializes a JavaScript `value` as a JSON string. The optional
+	      // `filter` argument may specify either a function that alters how object and
+	      // array members are serialized, or an array of strings and numbers that
+	      // indicates which properties should be serialized. The optional `width`
+	      // argument may be either a string or number that specifies the indentation
+	      // level of the output.
+	      if (!has("json-stringify")) {
+	        // Internal: A map of control characters and their escaped equivalents.
+	        var Escapes = {
+	          92: "\\\\",
+	          34: '\\"',
+	          8: "\\b",
+	          12: "\\f",
+	          10: "\\n",
+	          13: "\\r",
+	          9: "\\t"
+	        };
 
-	      // Internal: Double-quotes a string `value`, replacing all ASCII control
-	      // characters (characters with code unit values between 0 and 31) with
-	      // their escaped equivalents. This is an implementation of the
-	      // `Quote(value)` operation defined in ES 5.1 section 15.12.3.
-	      var unicodePrefix = "\\u00";
-	      var quote = function (value) {
-	        var result = '"', index = 0, length = value.length, isLarge = length > 10 && charIndexBuggy, symbols;
-	        if (isLarge) {
-	          symbols = value.split("");
-	        }
-	        for (; index < length; index++) {
-	          var charCode = value.charCodeAt(index);
-	          // If the character is a control character, append its Unicode or
-	          // shorthand escape sequence; otherwise, append the character as-is.
-	          switch (charCode) {
-	            case 8: case 9: case 10: case 12: case 13: case 34: case 92:
-	              result += Escapes[charCode];
-	              break;
-	            default:
-	              if (charCode < 32) {
-	                result += unicodePrefix + toPaddedString(2, charCode.toString(16));
+	        // Internal: Converts `value` into a zero-padded string such that its
+	        // length is at least equal to `width`. The `width` must be <= 6.
+	        var leadingZeroes = "000000";
+	        var toPaddedString = function (width, value) {
+	          // The `|| 0` expression is necessary to work around a bug in
+	          // Opera <= 7.54u2 where `0 == -0`, but `String(-0) !== "0"`.
+	          return (leadingZeroes + (value || 0)).slice(-width);
+	        };
+
+	        // Internal: Double-quotes a string `value`, replacing all ASCII control
+	        // characters (characters with code unit values between 0 and 31) with
+	        // their escaped equivalents. This is an implementation of the
+	        // `Quote(value)` operation defined in ES 5.1 section 15.12.3.
+	        var unicodePrefix = "\\u00";
+	        var quote = function (value) {
+	          var result = '"', index = 0, length = value.length, useCharIndex = !charIndexBuggy || length > 10;
+	          var symbols = useCharIndex && (charIndexBuggy ? value.split("") : value);
+	          for (; index < length; index++) {
+	            var charCode = value.charCodeAt(index);
+	            // If the character is a control character, append its Unicode or
+	            // shorthand escape sequence; otherwise, append the character as-is.
+	            switch (charCode) {
+	              case 8: case 9: case 10: case 12: case 13: case 34: case 92:
+	                result += Escapes[charCode];
 	                break;
-	              }
-	              result += isLarge ? symbols[index] : charIndexBuggy ? value.charAt(index) : value[index];
-	          }
-	        }
-	        return result + '"';
-	      };
-
-	      // Internal: Recursively serializes an object. Implements the
-	      // `Str(key, holder)`, `JO(value)`, and `JA(value)` operations.
-	      var serialize = function (property, object, callback, properties, whitespace, indentation, stack) {
-	        var value, className, year, month, date, time, hours, minutes, seconds, milliseconds, results, element, index, length, prefix, result;
-	        try {
-	          // Necessary for host object support.
-	          value = object[property];
-	        } catch (exception) {}
-	        if (typeof value == "object" && value) {
-	          className = getClass.call(value);
-	          if (className == dateClass && !isProperty.call(value, "toJSON")) {
-	            if (value > -1 / 0 && value < 1 / 0) {
-	              // Dates are serialized according to the `Date#toJSON` method
-	              // specified in ES 5.1 section 15.9.5.44. See section 15.9.1.15
-	              // for the ISO 8601 date time string format.
-	              if (getDay) {
-	                // Manually compute the year, month, date, hours, minutes,
-	                // seconds, and milliseconds if the `getUTC*` methods are
-	                // buggy. Adapted from @Yaffle's `date-shim` project.
-	                date = floor(value / 864e5);
-	                for (year = floor(date / 365.2425) + 1970 - 1; getDay(year + 1, 0) <= date; year++);
-	                for (month = floor((date - getDay(year, 0)) / 30.42); getDay(year, month + 1) <= date; month++);
-	                date = 1 + date - getDay(year, month);
-	                // The `time` value specifies the time within the day (see ES
-	                // 5.1 section 15.9.1.2). The formula `(A % B + B) % B` is used
-	                // to compute `A modulo B`, as the `%` operator does not
-	                // correspond to the `modulo` operation for negative numbers.
-	                time = (value % 864e5 + 864e5) % 864e5;
-	                // The hours, minutes, seconds, and milliseconds are obtained by
-	                // decomposing the time within the day. See section 15.9.1.10.
-	                hours = floor(time / 36e5) % 24;
-	                minutes = floor(time / 6e4) % 60;
-	                seconds = floor(time / 1e3) % 60;
-	                milliseconds = time % 1e3;
-	              } else {
-	                year = value.getUTCFullYear();
-	                month = value.getUTCMonth();
-	                date = value.getUTCDate();
-	                hours = value.getUTCHours();
-	                minutes = value.getUTCMinutes();
-	                seconds = value.getUTCSeconds();
-	                milliseconds = value.getUTCMilliseconds();
-	              }
-	              // Serialize extended years correctly.
-	              value = (year <= 0 || year >= 1e4 ? (year < 0 ? "-" : "+") + toPaddedString(6, year < 0 ? -year : year) : toPaddedString(4, year)) +
-	                "-" + toPaddedString(2, month + 1) + "-" + toPaddedString(2, date) +
-	                // Months, dates, hours, minutes, and seconds should have two
-	                // digits; milliseconds should have three.
-	                "T" + toPaddedString(2, hours) + ":" + toPaddedString(2, minutes) + ":" + toPaddedString(2, seconds) +
-	                // Milliseconds are optional in ES 5.0, but required in 5.1.
-	                "." + toPaddedString(3, milliseconds) + "Z";
-	            } else {
-	              value = null;
-	            }
-	          } else if (typeof value.toJSON == "function" && ((className != numberClass && className != stringClass && className != arrayClass) || isProperty.call(value, "toJSON"))) {
-	            // Prototype <= 1.6.1 adds non-standard `toJSON` methods to the
-	            // `Number`, `String`, `Date`, and `Array` prototypes. JSON 3
-	            // ignores all `toJSON` methods on these objects unless they are
-	            // defined directly on an instance.
-	            value = value.toJSON(property);
-	          }
-	        }
-	        if (callback) {
-	          // If a replacement function was provided, call it to obtain the value
-	          // for serialization.
-	          value = callback.call(object, property, value);
-	        }
-	        if (value === null) {
-	          return "null";
-	        }
-	        className = getClass.call(value);
-	        if (className == booleanClass) {
-	          // Booleans are represented literally.
-	          return "" + value;
-	        } else if (className == numberClass) {
-	          // JSON numbers must be finite. `Infinity` and `NaN` are serialized as
-	          // `"null"`.
-	          return value > -1 / 0 && value < 1 / 0 ? "" + value : "null";
-	        } else if (className == stringClass) {
-	          // Strings are double-quoted and escaped.
-	          return quote("" + value);
-	        }
-	        // Recursively serialize objects and arrays.
-	        if (typeof value == "object") {
-	          // Check for cyclic structures. This is a linear search; performance
-	          // is inversely proportional to the number of unique nested objects.
-	          for (length = stack.length; length--;) {
-	            if (stack[length] === value) {
-	              // Cyclic structures cannot be serialized by `JSON.stringify`.
-	              throw TypeError();
-	            }
-	          }
-	          // Add the object to the stack of traversed objects.
-	          stack.push(value);
-	          results = [];
-	          // Save the current indentation level and indent one additional level.
-	          prefix = indentation;
-	          indentation += whitespace;
-	          if (className == arrayClass) {
-	            // Recursively serialize array elements.
-	            for (index = 0, length = value.length; index < length; index++) {
-	              element = serialize(index, value, callback, properties, whitespace, indentation, stack);
-	              results.push(element === undef ? "null" : element);
-	            }
-	            result = results.length ? (whitespace ? "[\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "]" : ("[" + results.join(",") + "]")) : "[]";
-	          } else {
-	            // Recursively serialize object members. Members are selected from
-	            // either a user-specified list of property names, or the object
-	            // itself.
-	            forEach(properties || value, function (property) {
-	              var element = serialize(property, value, callback, properties, whitespace, indentation, stack);
-	              if (element !== undef) {
-	                // According to ES 5.1 section 15.12.3: "If `gap` {whitespace}
-	                // is not the empty string, let `member` {quote(property) + ":"}
-	                // be the concatenation of `member` and the `space` character."
-	                // The "`space` character" refers to the literal space
-	                // character, not the `space` {width} argument provided to
-	                // `JSON.stringify`.
-	                results.push(quote(property) + ":" + (whitespace ? " " : "") + element);
-	              }
-	            });
-	            result = results.length ? (whitespace ? "{\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "}" : ("{" + results.join(",") + "}")) : "{}";
-	          }
-	          // Remove the object from the traversed object stack.
-	          stack.pop();
-	          return result;
-	        }
-	      };
-
-	      // Public: `JSON.stringify`. See ES 5.1 section 15.12.3.
-	      JSON3.stringify = function (source, filter, width) {
-	        var whitespace, callback, properties, className;
-	        if (typeof filter == "function" || typeof filter == "object" && filter) {
-	          if ((className = getClass.call(filter)) == functionClass) {
-	            callback = filter;
-	          } else if (className == arrayClass) {
-	            // Convert the property names array into a makeshift set.
-	            properties = {};
-	            for (var index = 0, length = filter.length, value; index < length; value = filter[index++], ((className = getClass.call(value)), className == stringClass || className == numberClass) && (properties[value] = 1));
-	          }
-	        }
-	        if (width) {
-	          if ((className = getClass.call(width)) == numberClass) {
-	            // Convert the `width` to an integer and create a string containing
-	            // `width` number of space characters.
-	            if ((width -= width % 1) > 0) {
-	              for (whitespace = "", width > 10 && (width = 10); whitespace.length < width; whitespace += " ");
-	            }
-	          } else if (className == stringClass) {
-	            whitespace = width.length <= 10 ? width : width.slice(0, 10);
-	          }
-	        }
-	        // Opera <= 7.54u2 discards the values associated with empty string keys
-	        // (`""`) only if they are used directly within an object member list
-	        // (e.g., `!("" in { "": 1})`).
-	        return serialize("", (value = {}, value[""] = source, value), callback, properties, whitespace, "", []);
-	      };
-	    }
-
-	    // Public: Parses a JSON source string.
-	    if (!has("json-parse")) {
-	      var fromCharCode = String.fromCharCode;
-
-	      // Internal: A map of escaped control characters and their unescaped
-	      // equivalents.
-	      var Unescapes = {
-	        92: "\\",
-	        34: '"',
-	        47: "/",
-	        98: "\b",
-	        116: "\t",
-	        110: "\n",
-	        102: "\f",
-	        114: "\r"
-	      };
-
-	      // Internal: Stores the parser state.
-	      var Index, Source;
-
-	      // Internal: Resets the parser state and throws a `SyntaxError`.
-	      var abort = function() {
-	        Index = Source = null;
-	        throw SyntaxError();
-	      };
-
-	      // Internal: Returns the next token, or `"$"` if the parser has reached
-	      // the end of the source string. A token may be a string, number, `null`
-	      // literal, or Boolean literal.
-	      var lex = function () {
-	        var source = Source, length = source.length, value, begin, position, isSigned, charCode;
-	        while (Index < length) {
-	          charCode = source.charCodeAt(Index);
-	          switch (charCode) {
-	            case 9: case 10: case 13: case 32:
-	              // Skip whitespace tokens, including tabs, carriage returns, line
-	              // feeds, and space characters.
-	              Index++;
-	              break;
-	            case 123: case 125: case 91: case 93: case 58: case 44:
-	              // Parse a punctuator token (`{`, `}`, `[`, `]`, `:`, or `,`) at
-	              // the current position.
-	              value = charIndexBuggy ? source.charAt(Index) : source[Index];
-	              Index++;
-	              return value;
-	            case 34:
-	              // `"` delimits a JSON string; advance to the next character and
-	              // begin parsing the string. String tokens are prefixed with the
-	              // sentinel `@` character to distinguish them from punctuators and
-	              // end-of-string tokens.
-	              for (value = "@", Index++; Index < length;) {
-	                charCode = source.charCodeAt(Index);
+	              default:
 	                if (charCode < 32) {
-	                  // Unescaped ASCII control characters (those with a code unit
-	                  // less than the space character) are not permitted.
-	                  abort();
-	                } else if (charCode == 92) {
-	                  // A reverse solidus (`\`) marks the beginning of an escaped
-	                  // control character (including `"`, `\`, and `/`) or Unicode
-	                  // escape sequence.
-	                  charCode = source.charCodeAt(++Index);
-	                  switch (charCode) {
-	                    case 92: case 34: case 47: case 98: case 116: case 110: case 102: case 114:
-	                      // Revive escaped control characters.
-	                      value += Unescapes[charCode];
-	                      Index++;
-	                      break;
-	                    case 117:
-	                      // `\u` marks the beginning of a Unicode escape sequence.
-	                      // Advance to the first character and validate the
-	                      // four-digit code point.
-	                      begin = ++Index;
-	                      for (position = Index + 4; Index < position; Index++) {
-	                        charCode = source.charCodeAt(Index);
-	                        // A valid sequence comprises four hexdigits (case-
-	                        // insensitive) that form a single hexadecimal value.
-	                        if (!(charCode >= 48 && charCode <= 57 || charCode >= 97 && charCode <= 102 || charCode >= 65 && charCode <= 70)) {
-	                          // Invalid Unicode escape sequence.
-	                          abort();
-	                        }
-	                      }
-	                      // Revive the escaped character.
-	                      value += fromCharCode("0x" + source.slice(begin, Index));
-	                      break;
-	                    default:
-	                      // Invalid escape sequence.
-	                      abort();
-	                  }
-	                } else {
-	                  if (charCode == 34) {
-	                    // An unescaped double-quote character marks the end of the
-	                    // string.
-	                    break;
-	                  }
-	                  charCode = source.charCodeAt(Index);
-	                  begin = Index;
-	                  // Optimize for the common case where a string is valid.
-	                  while (charCode >= 32 && charCode != 92 && charCode != 34) {
-	                    charCode = source.charCodeAt(++Index);
-	                  }
-	                  // Append the string as-is.
-	                  value += source.slice(begin, Index);
+	                  result += unicodePrefix + toPaddedString(2, charCode.toString(16));
+	                  break;
 	                }
+	                result += useCharIndex ? symbols[index] : value.charAt(index);
+	            }
+	          }
+	          return result + '"';
+	        };
+
+	        // Internal: Recursively serializes an object. Implements the
+	        // `Str(key, holder)`, `JO(value)`, and `JA(value)` operations.
+	        var serialize = function (property, object, callback, properties, whitespace, indentation, stack) {
+	          var value, className, year, month, date, time, hours, minutes, seconds, milliseconds, results, element, index, length, prefix, result;
+	          try {
+	            // Necessary for host object support.
+	            value = object[property];
+	          } catch (exception) {}
+	          if (typeof value == "object" && value) {
+	            className = getClass.call(value);
+	            if (className == dateClass && !isProperty.call(value, "toJSON")) {
+	              if (value > -1 / 0 && value < 1 / 0) {
+	                // Dates are serialized according to the `Date#toJSON` method
+	                // specified in ES 5.1 section 15.9.5.44. See section 15.9.1.15
+	                // for the ISO 8601 date time string format.
+	                if (getDay) {
+	                  // Manually compute the year, month, date, hours, minutes,
+	                  // seconds, and milliseconds if the `getUTC*` methods are
+	                  // buggy. Adapted from @Yaffle's `date-shim` project.
+	                  date = floor(value / 864e5);
+	                  for (year = floor(date / 365.2425) + 1970 - 1; getDay(year + 1, 0) <= date; year++);
+	                  for (month = floor((date - getDay(year, 0)) / 30.42); getDay(year, month + 1) <= date; month++);
+	                  date = 1 + date - getDay(year, month);
+	                  // The `time` value specifies the time within the day (see ES
+	                  // 5.1 section 15.9.1.2). The formula `(A % B + B) % B` is used
+	                  // to compute `A modulo B`, as the `%` operator does not
+	                  // correspond to the `modulo` operation for negative numbers.
+	                  time = (value % 864e5 + 864e5) % 864e5;
+	                  // The hours, minutes, seconds, and milliseconds are obtained by
+	                  // decomposing the time within the day. See section 15.9.1.10.
+	                  hours = floor(time / 36e5) % 24;
+	                  minutes = floor(time / 6e4) % 60;
+	                  seconds = floor(time / 1e3) % 60;
+	                  milliseconds = time % 1e3;
+	                } else {
+	                  year = value.getUTCFullYear();
+	                  month = value.getUTCMonth();
+	                  date = value.getUTCDate();
+	                  hours = value.getUTCHours();
+	                  minutes = value.getUTCMinutes();
+	                  seconds = value.getUTCSeconds();
+	                  milliseconds = value.getUTCMilliseconds();
+	                }
+	                // Serialize extended years correctly.
+	                value = (year <= 0 || year >= 1e4 ? (year < 0 ? "-" : "+") + toPaddedString(6, year < 0 ? -year : year) : toPaddedString(4, year)) +
+	                  "-" + toPaddedString(2, month + 1) + "-" + toPaddedString(2, date) +
+	                  // Months, dates, hours, minutes, and seconds should have two
+	                  // digits; milliseconds should have three.
+	                  "T" + toPaddedString(2, hours) + ":" + toPaddedString(2, minutes) + ":" + toPaddedString(2, seconds) +
+	                  // Milliseconds are optional in ES 5.0, but required in 5.1.
+	                  "." + toPaddedString(3, milliseconds) + "Z";
+	              } else {
+	                value = null;
 	              }
-	              if (source.charCodeAt(Index) == 34) {
-	                // Advance to the next character and return the revived string.
+	            } else if (typeof value.toJSON == "function" && ((className != numberClass && className != stringClass && className != arrayClass) || isProperty.call(value, "toJSON"))) {
+	              // Prototype <= 1.6.1 adds non-standard `toJSON` methods to the
+	              // `Number`, `String`, `Date`, and `Array` prototypes. JSON 3
+	              // ignores all `toJSON` methods on these objects unless they are
+	              // defined directly on an instance.
+	              value = value.toJSON(property);
+	            }
+	          }
+	          if (callback) {
+	            // If a replacement function was provided, call it to obtain the value
+	            // for serialization.
+	            value = callback.call(object, property, value);
+	          }
+	          if (value === null) {
+	            return "null";
+	          }
+	          className = getClass.call(value);
+	          if (className == booleanClass) {
+	            // Booleans are represented literally.
+	            return "" + value;
+	          } else if (className == numberClass) {
+	            // JSON numbers must be finite. `Infinity` and `NaN` are serialized as
+	            // `"null"`.
+	            return value > -1 / 0 && value < 1 / 0 ? "" + value : "null";
+	          } else if (className == stringClass) {
+	            // Strings are double-quoted and escaped.
+	            return quote("" + value);
+	          }
+	          // Recursively serialize objects and arrays.
+	          if (typeof value == "object") {
+	            // Check for cyclic structures. This is a linear search; performance
+	            // is inversely proportional to the number of unique nested objects.
+	            for (length = stack.length; length--;) {
+	              if (stack[length] === value) {
+	                // Cyclic structures cannot be serialized by `JSON.stringify`.
+	                throw TypeError();
+	              }
+	            }
+	            // Add the object to the stack of traversed objects.
+	            stack.push(value);
+	            results = [];
+	            // Save the current indentation level and indent one additional level.
+	            prefix = indentation;
+	            indentation += whitespace;
+	            if (className == arrayClass) {
+	              // Recursively serialize array elements.
+	              for (index = 0, length = value.length; index < length; index++) {
+	                element = serialize(index, value, callback, properties, whitespace, indentation, stack);
+	                results.push(element === undef ? "null" : element);
+	              }
+	              result = results.length ? (whitespace ? "[\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "]" : ("[" + results.join(",") + "]")) : "[]";
+	            } else {
+	              // Recursively serialize object members. Members are selected from
+	              // either a user-specified list of property names, or the object
+	              // itself.
+	              forEach(properties || value, function (property) {
+	                var element = serialize(property, value, callback, properties, whitespace, indentation, stack);
+	                if (element !== undef) {
+	                  // According to ES 5.1 section 15.12.3: "If `gap` {whitespace}
+	                  // is not the empty string, let `member` {quote(property) + ":"}
+	                  // be the concatenation of `member` and the `space` character."
+	                  // The "`space` character" refers to the literal space
+	                  // character, not the `space` {width} argument provided to
+	                  // `JSON.stringify`.
+	                  results.push(quote(property) + ":" + (whitespace ? " " : "") + element);
+	                }
+	              });
+	              result = results.length ? (whitespace ? "{\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "}" : ("{" + results.join(",") + "}")) : "{}";
+	            }
+	            // Remove the object from the traversed object stack.
+	            stack.pop();
+	            return result;
+	          }
+	        };
+
+	        // Public: `JSON.stringify`. See ES 5.1 section 15.12.3.
+	        exports.stringify = function (source, filter, width) {
+	          var whitespace, callback, properties, className;
+	          if (objectTypes[typeof filter] && filter) {
+	            if ((className = getClass.call(filter)) == functionClass) {
+	              callback = filter;
+	            } else if (className == arrayClass) {
+	              // Convert the property names array into a makeshift set.
+	              properties = {};
+	              for (var index = 0, length = filter.length, value; index < length; value = filter[index++], ((className = getClass.call(value)), className == stringClass || className == numberClass) && (properties[value] = 1));
+	            }
+	          }
+	          if (width) {
+	            if ((className = getClass.call(width)) == numberClass) {
+	              // Convert the `width` to an integer and create a string containing
+	              // `width` number of space characters.
+	              if ((width -= width % 1) > 0) {
+	                for (whitespace = "", width > 10 && (width = 10); whitespace.length < width; whitespace += " ");
+	              }
+	            } else if (className == stringClass) {
+	              whitespace = width.length <= 10 ? width : width.slice(0, 10);
+	            }
+	          }
+	          // Opera <= 7.54u2 discards the values associated with empty string keys
+	          // (`""`) only if they are used directly within an object member list
+	          // (e.g., `!("" in { "": 1})`).
+	          return serialize("", (value = {}, value[""] = source, value), callback, properties, whitespace, "", []);
+	        };
+	      }
+
+	      // Public: Parses a JSON source string.
+	      if (!has("json-parse")) {
+	        var fromCharCode = String.fromCharCode;
+
+	        // Internal: A map of escaped control characters and their unescaped
+	        // equivalents.
+	        var Unescapes = {
+	          92: "\\",
+	          34: '"',
+	          47: "/",
+	          98: "\b",
+	          116: "\t",
+	          110: "\n",
+	          102: "\f",
+	          114: "\r"
+	        };
+
+	        // Internal: Stores the parser state.
+	        var Index, Source;
+
+	        // Internal: Resets the parser state and throws a `SyntaxError`.
+	        var abort = function () {
+	          Index = Source = null;
+	          throw SyntaxError();
+	        };
+
+	        // Internal: Returns the next token, or `"$"` if the parser has reached
+	        // the end of the source string. A token may be a string, number, `null`
+	        // literal, or Boolean literal.
+	        var lex = function () {
+	          var source = Source, length = source.length, value, begin, position, isSigned, charCode;
+	          while (Index < length) {
+	            charCode = source.charCodeAt(Index);
+	            switch (charCode) {
+	              case 9: case 10: case 13: case 32:
+	                // Skip whitespace tokens, including tabs, carriage returns, line
+	                // feeds, and space characters.
+	                Index++;
+	                break;
+	              case 123: case 125: case 91: case 93: case 58: case 44:
+	                // Parse a punctuator token (`{`, `}`, `[`, `]`, `:`, or `,`) at
+	                // the current position.
+	                value = charIndexBuggy ? source.charAt(Index) : source[Index];
 	                Index++;
 	                return value;
-	              }
-	              // Unterminated string.
-	              abort();
-	            default:
-	              // Parse numbers and literals.
-	              begin = Index;
-	              // Advance past the negative sign, if one is specified.
-	              if (charCode == 45) {
-	                isSigned = true;
-	                charCode = source.charCodeAt(++Index);
-	              }
-	              // Parse an integer or floating-point value.
-	              if (charCode >= 48 && charCode <= 57) {
-	                // Leading zeroes are interpreted as octal literals.
-	                if (charCode == 48 && ((charCode = source.charCodeAt(Index + 1)), charCode >= 48 && charCode <= 57)) {
-	                  // Illegal octal literal.
-	                  abort();
-	                }
-	                isSigned = false;
-	                // Parse the integer component.
-	                for (; Index < length && ((charCode = source.charCodeAt(Index)), charCode >= 48 && charCode <= 57); Index++);
-	                // Floats cannot contain a leading decimal point; however, this
-	                // case is already accounted for by the parser.
-	                if (source.charCodeAt(Index) == 46) {
-	                  position = ++Index;
-	                  // Parse the decimal component.
-	                  for (; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
-	                  if (position == Index) {
-	                    // Illegal trailing decimal.
+	              case 34:
+	                // `"` delimits a JSON string; advance to the next character and
+	                // begin parsing the string. String tokens are prefixed with the
+	                // sentinel `@` character to distinguish them from punctuators and
+	                // end-of-string tokens.
+	                for (value = "@", Index++; Index < length;) {
+	                  charCode = source.charCodeAt(Index);
+	                  if (charCode < 32) {
+	                    // Unescaped ASCII control characters (those with a code unit
+	                    // less than the space character) are not permitted.
 	                    abort();
+	                  } else if (charCode == 92) {
+	                    // A reverse solidus (`\`) marks the beginning of an escaped
+	                    // control character (including `"`, `\`, and `/`) or Unicode
+	                    // escape sequence.
+	                    charCode = source.charCodeAt(++Index);
+	                    switch (charCode) {
+	                      case 92: case 34: case 47: case 98: case 116: case 110: case 102: case 114:
+	                        // Revive escaped control characters.
+	                        value += Unescapes[charCode];
+	                        Index++;
+	                        break;
+	                      case 117:
+	                        // `\u` marks the beginning of a Unicode escape sequence.
+	                        // Advance to the first character and validate the
+	                        // four-digit code point.
+	                        begin = ++Index;
+	                        for (position = Index + 4; Index < position; Index++) {
+	                          charCode = source.charCodeAt(Index);
+	                          // A valid sequence comprises four hexdigits (case-
+	                          // insensitive) that form a single hexadecimal value.
+	                          if (!(charCode >= 48 && charCode <= 57 || charCode >= 97 && charCode <= 102 || charCode >= 65 && charCode <= 70)) {
+	                            // Invalid Unicode escape sequence.
+	                            abort();
+	                          }
+	                        }
+	                        // Revive the escaped character.
+	                        value += fromCharCode("0x" + source.slice(begin, Index));
+	                        break;
+	                      default:
+	                        // Invalid escape sequence.
+	                        abort();
+	                    }
+	                  } else {
+	                    if (charCode == 34) {
+	                      // An unescaped double-quote character marks the end of the
+	                      // string.
+	                      break;
+	                    }
+	                    charCode = source.charCodeAt(Index);
+	                    begin = Index;
+	                    // Optimize for the common case where a string is valid.
+	                    while (charCode >= 32 && charCode != 92 && charCode != 34) {
+	                      charCode = source.charCodeAt(++Index);
+	                    }
+	                    // Append the string as-is.
+	                    value += source.slice(begin, Index);
 	                  }
-	                  Index = position;
 	                }
-	                // Parse exponents. The `e` denoting the exponent is
-	                // case-insensitive.
-	                charCode = source.charCodeAt(Index);
-	                if (charCode == 101 || charCode == 69) {
+	                if (source.charCodeAt(Index) == 34) {
+	                  // Advance to the next character and return the revived string.
+	                  Index++;
+	                  return value;
+	                }
+	                // Unterminated string.
+	                abort();
+	              default:
+	                // Parse numbers and literals.
+	                begin = Index;
+	                // Advance past the negative sign, if one is specified.
+	                if (charCode == 45) {
+	                  isSigned = true;
 	                  charCode = source.charCodeAt(++Index);
-	                  // Skip past the sign following the exponent, if one is
-	                  // specified.
-	                  if (charCode == 43 || charCode == 45) {
-	                    Index++;
-	                  }
-	                  // Parse the exponential component.
-	                  for (position = Index; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
-	                  if (position == Index) {
-	                    // Illegal empty exponent.
-	                    abort();
-	                  }
-	                  Index = position;
 	                }
-	                // Coerce the parsed value to a JavaScript number.
-	                return +source.slice(begin, Index);
-	              }
-	              // A negative sign may only precede numbers.
-	              if (isSigned) {
-	                abort();
-	              }
-	              // `true`, `false`, and `null` literals.
-	              if (source.slice(Index, Index + 4) == "true") {
-	                Index += 4;
-	                return true;
-	              } else if (source.slice(Index, Index + 5) == "false") {
-	                Index += 5;
-	                return false;
-	              } else if (source.slice(Index, Index + 4) == "null") {
-	                Index += 4;
-	                return null;
-	              }
-	              // Unrecognized token.
-	              abort();
-	          }
-	        }
-	        // Return the sentinel `$` character if the parser has reached the end
-	        // of the source string.
-	        return "$";
-	      };
-
-	      // Internal: Parses a JSON `value` token.
-	      var get = function (value) {
-	        var results, hasMembers;
-	        if (value == "$") {
-	          // Unexpected end of input.
-	          abort();
-	        }
-	        if (typeof value == "string") {
-	          if ((charIndexBuggy ? value.charAt(0) : value[0]) == "@") {
-	            // Remove the sentinel `@` character.
-	            return value.slice(1);
-	          }
-	          // Parse object and array literals.
-	          if (value == "[") {
-	            // Parses a JSON array, returning a new JavaScript array.
-	            results = [];
-	            for (;; hasMembers || (hasMembers = true)) {
-	              value = lex();
-	              // A closing square bracket marks the end of the array literal.
-	              if (value == "]") {
-	                break;
-	              }
-	              // If the array literal contains elements, the current token
-	              // should be a comma separating the previous element from the
-	              // next.
-	              if (hasMembers) {
-	                if (value == ",") {
-	                  value = lex();
-	                  if (value == "]") {
-	                    // Unexpected trailing `,` in array literal.
+	                // Parse an integer or floating-point value.
+	                if (charCode >= 48 && charCode <= 57) {
+	                  // Leading zeroes are interpreted as octal literals.
+	                  if (charCode == 48 && ((charCode = source.charCodeAt(Index + 1)), charCode >= 48 && charCode <= 57)) {
+	                    // Illegal octal literal.
 	                    abort();
 	                  }
-	                } else {
-	                  // A `,` must separate each array element.
+	                  isSigned = false;
+	                  // Parse the integer component.
+	                  for (; Index < length && ((charCode = source.charCodeAt(Index)), charCode >= 48 && charCode <= 57); Index++);
+	                  // Floats cannot contain a leading decimal point; however, this
+	                  // case is already accounted for by the parser.
+	                  if (source.charCodeAt(Index) == 46) {
+	                    position = ++Index;
+	                    // Parse the decimal component.
+	                    for (; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
+	                    if (position == Index) {
+	                      // Illegal trailing decimal.
+	                      abort();
+	                    }
+	                    Index = position;
+	                  }
+	                  // Parse exponents. The `e` denoting the exponent is
+	                  // case-insensitive.
+	                  charCode = source.charCodeAt(Index);
+	                  if (charCode == 101 || charCode == 69) {
+	                    charCode = source.charCodeAt(++Index);
+	                    // Skip past the sign following the exponent, if one is
+	                    // specified.
+	                    if (charCode == 43 || charCode == 45) {
+	                      Index++;
+	                    }
+	                    // Parse the exponential component.
+	                    for (position = Index; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
+	                    if (position == Index) {
+	                      // Illegal empty exponent.
+	                      abort();
+	                    }
+	                    Index = position;
+	                  }
+	                  // Coerce the parsed value to a JavaScript number.
+	                  return +source.slice(begin, Index);
+	                }
+	                // A negative sign may only precede numbers.
+	                if (isSigned) {
 	                  abort();
 	                }
-	              }
-	              // Elisions and leading commas are not permitted.
-	              if (value == ",") {
+	                // `true`, `false`, and `null` literals.
+	                if (source.slice(Index, Index + 4) == "true") {
+	                  Index += 4;
+	                  return true;
+	                } else if (source.slice(Index, Index + 5) == "false") {
+	                  Index += 5;
+	                  return false;
+	                } else if (source.slice(Index, Index + 4) == "null") {
+	                  Index += 4;
+	                  return null;
+	                }
+	                // Unrecognized token.
 	                abort();
-	              }
-	              results.push(get(value));
 	            }
-	            return results;
-	          } else if (value == "{") {
-	            // Parses a JSON object, returning a new JavaScript object.
-	            results = {};
-	            for (;; hasMembers || (hasMembers = true)) {
-	              value = lex();
-	              // A closing curly brace marks the end of the object literal.
-	              if (value == "}") {
-	                break;
-	              }
-	              // If the object literal contains members, the current token
-	              // should be a comma separator.
-	              if (hasMembers) {
-	                if (value == ",") {
-	                  value = lex();
-	                  if (value == "}") {
-	                    // Unexpected trailing `,` in object literal.
+	          }
+	          // Return the sentinel `$` character if the parser has reached the end
+	          // of the source string.
+	          return "$";
+	        };
+
+	        // Internal: Parses a JSON `value` token.
+	        var get = function (value) {
+	          var results, hasMembers;
+	          if (value == "$") {
+	            // Unexpected end of input.
+	            abort();
+	          }
+	          if (typeof value == "string") {
+	            if ((charIndexBuggy ? value.charAt(0) : value[0]) == "@") {
+	              // Remove the sentinel `@` character.
+	              return value.slice(1);
+	            }
+	            // Parse object and array literals.
+	            if (value == "[") {
+	              // Parses a JSON array, returning a new JavaScript array.
+	              results = [];
+	              for (;; hasMembers || (hasMembers = true)) {
+	                value = lex();
+	                // A closing square bracket marks the end of the array literal.
+	                if (value == "]") {
+	                  break;
+	                }
+	                // If the array literal contains elements, the current token
+	                // should be a comma separating the previous element from the
+	                // next.
+	                if (hasMembers) {
+	                  if (value == ",") {
+	                    value = lex();
+	                    if (value == "]") {
+	                      // Unexpected trailing `,` in array literal.
+	                      abort();
+	                    }
+	                  } else {
+	                    // A `,` must separate each array element.
 	                    abort();
 	                  }
-	                } else {
-	                  // A `,` must separate each object member.
+	                }
+	                // Elisions and leading commas are not permitted.
+	                if (value == ",") {
 	                  abort();
 	                }
+	                results.push(get(value));
 	              }
-	              // Leading commas are not permitted, object property names must be
-	              // double-quoted strings, and a `:` must separate each property
-	              // name and value.
-	              if (value == "," || typeof value != "string" || (charIndexBuggy ? value.charAt(0) : value[0]) != "@" || lex() != ":") {
-	                abort();
+	              return results;
+	            } else if (value == "{") {
+	              // Parses a JSON object, returning a new JavaScript object.
+	              results = {};
+	              for (;; hasMembers || (hasMembers = true)) {
+	                value = lex();
+	                // A closing curly brace marks the end of the object literal.
+	                if (value == "}") {
+	                  break;
+	                }
+	                // If the object literal contains members, the current token
+	                // should be a comma separator.
+	                if (hasMembers) {
+	                  if (value == ",") {
+	                    value = lex();
+	                    if (value == "}") {
+	                      // Unexpected trailing `,` in object literal.
+	                      abort();
+	                    }
+	                  } else {
+	                    // A `,` must separate each object member.
+	                    abort();
+	                  }
+	                }
+	                // Leading commas are not permitted, object property names must be
+	                // double-quoted strings, and a `:` must separate each property
+	                // name and value.
+	                if (value == "," || typeof value != "string" || (charIndexBuggy ? value.charAt(0) : value[0]) != "@" || lex() != ":") {
+	                  abort();
+	                }
+	                results[value.slice(1)] = get(lex());
 	              }
-	              results[value.slice(1)] = get(lex());
+	              return results;
 	            }
-	            return results;
+	            // Unexpected token encountered.
+	            abort();
 	          }
-	          // Unexpected token encountered.
-	          abort();
-	        }
-	        return value;
-	      };
+	          return value;
+	        };
 
-	      // Internal: Updates a traversed object member.
-	      var update = function(source, property, callback) {
-	        var element = walk(source, property, callback);
-	        if (element === undef) {
-	          delete source[property];
-	        } else {
-	          source[property] = element;
-	        }
-	      };
-
-	      // Internal: Recursively traverses a parsed JSON object, invoking the
-	      // `callback` function for each value. This is an implementation of the
-	      // `Walk(holder, name)` operation defined in ES 5.1 section 15.12.2.
-	      var walk = function (source, property, callback) {
-	        var value = source[property], length;
-	        if (typeof value == "object" && value) {
-	          // `forEach` can't be used to traverse an array in Opera <= 8.54
-	          // because its `Object#hasOwnProperty` implementation returns `false`
-	          // for array indices (e.g., `![1, 2, 3].hasOwnProperty("0")`).
-	          if (getClass.call(value) == arrayClass) {
-	            for (length = value.length; length--;) {
-	              update(value, length, callback);
-	            }
+	        // Internal: Updates a traversed object member.
+	        var update = function (source, property, callback) {
+	          var element = walk(source, property, callback);
+	          if (element === undef) {
+	            delete source[property];
 	          } else {
-	            forEach(value, function (property) {
-	              update(value, property, callback);
-	            });
+	            source[property] = element;
 	          }
-	        }
-	        return callback.call(source, property, value);
-	      };
+	        };
 
-	      // Public: `JSON.parse`. See ES 5.1 section 15.12.2.
-	      JSON3.parse = function (source, callback) {
-	        var result, value;
-	        Index = 0;
-	        Source = "" + source;
-	        result = get(lex());
-	        // If a JSON string contains multiple tokens, it is invalid.
-	        if (lex() != "$") {
-	          abort();
-	        }
-	        // Reset the parser state.
-	        Index = Source = null;
-	        return callback && getClass.call(callback) == functionClass ? walk((value = {}, value[""] = result, value), "", callback) : result;
-	      };
+	        // Internal: Recursively traverses a parsed JSON object, invoking the
+	        // `callback` function for each value. This is an implementation of the
+	        // `Walk(holder, name)` operation defined in ES 5.1 section 15.12.2.
+	        var walk = function (source, property, callback) {
+	          var value = source[property], length;
+	          if (typeof value == "object" && value) {
+	            // `forEach` can't be used to traverse an array in Opera <= 8.54
+	            // because its `Object#hasOwnProperty` implementation returns `false`
+	            // for array indices (e.g., `![1, 2, 3].hasOwnProperty("0")`).
+	            if (getClass.call(value) == arrayClass) {
+	              for (length = value.length; length--;) {
+	                update(value, length, callback);
+	              }
+	            } else {
+	              forEach(value, function (property) {
+	                update(value, property, callback);
+	              });
+	            }
+	          }
+	          return callback.call(source, property, value);
+	        };
+
+	        // Public: `JSON.parse`. See ES 5.1 section 15.12.2.
+	        exports.parse = function (source, callback) {
+	          var result, value;
+	          Index = 0;
+	          Source = "" + source;
+	          result = get(lex());
+	          // If a JSON string contains multiple tokens, it is invalid.
+	          if (lex() != "$") {
+	            abort();
+	          }
+	          // Reset the parser state.
+	          Index = Source = null;
+	          return callback && getClass.call(callback) == functionClass ? walk((value = {}, value[""] = result, value), "", callback) : result;
+	        };
+	      }
 	    }
+
+	    exports["runInContext"] = runInContext;
+	    return exports;
+	  }
+
+	  if (freeExports && !isLoader) {
+	    // Export for CommonJS environments.
+	    runInContext(root, freeExports);
+	  } else {
+	    // Export for web browsers and JavaScript engines.
+	    var nativeJSON = root.JSON,
+	        previousJSON = root["JSON3"],
+	        isRestored = false;
+
+	    var JSON3 = runInContext(root, (root["JSON3"] = {
+	      // Public: Restores the original value of the global `JSON` object and
+	      // returns a reference to the `JSON3` object.
+	      "noConflict": function () {
+	        if (!isRestored) {
+	          isRestored = true;
+	          root.JSON = nativeJSON;
+	          root["JSON3"] = previousJSON;
+	          nativeJSON = previousJSON = null;
+	        }
+	        return JSON3;
+	      }
+	    }));
+
+	    root.JSON = {
+	      "parse": JSON3.parse,
+	      "stringify": JSON3.stringify
+	    };
 	  }
 
 	  // Export for asynchronous module loaders.
@@ -21509,11 +21934,28 @@
 	      return JSON3;
 	    }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  }
-	}(this));
+	}).call(this);
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(167)(module), (function() { return this; }())))
+
+/***/ },
+/* 167 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
 
 
 /***/ },
-/* 166 */
+/* 168 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -21521,7 +21963,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-/* 167 */
+/* 169 */
 /***/ function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -21530,7 +21972,7 @@
 
 
 /***/ },
-/* 168 */
+/* 170 */
 /***/ function(module, exports) {
 
 	
@@ -21700,7 +22142,7 @@
 
 
 /***/ },
-/* 169 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -21709,8 +22151,8 @@
 	 * Module requirements
 	 */
 
-	var isArray = __webpack_require__(167);
-	var isBuf = __webpack_require__(170);
+	var isArray = __webpack_require__(169);
+	var isBuf = __webpack_require__(172);
 
 	/**
 	 * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
@@ -21848,7 +22290,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 170 */
+/* 172 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -21868,7 +22310,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 171 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -21876,17 +22318,21 @@
 	 * Module dependencies.
 	 */
 
-	var url = __webpack_require__(161);
-	var eio = __webpack_require__(172);
-	var Socket = __webpack_require__(203);
-	var Emitter = __webpack_require__(168);
-	var parser = __webpack_require__(164);
-	var on = __webpack_require__(205);
-	var bind = __webpack_require__(206);
-	var object = __webpack_require__(207);
-	var debug = __webpack_require__(163)('socket.io-client:manager');
-	var indexOf = __webpack_require__(200);
+	var eio = __webpack_require__(174);
+	var Socket = __webpack_require__(201);
+	var Emitter = __webpack_require__(202);
+	var parser = __webpack_require__(165);
+	var on = __webpack_require__(204);
+	var bind = __webpack_require__(205);
+	var debug = __webpack_require__(162)('socket.io-client:manager');
+	var indexOf = __webpack_require__(199);
 	var Backoff = __webpack_require__(208);
+
+	/**
+	 * IE6+ hasOwnProperty
+	 */
+
+	var has = Object.prototype.hasOwnProperty;
 
 	/**
 	 * Module exports
@@ -21927,7 +22373,8 @@
 	  this.timeout(null == opts.timeout ? 20000 : opts.timeout);
 	  this.readyState = 'closed';
 	  this.uri = uri;
-	  this.connected = [];
+	  this.connecting = [];
+	  this.lastPing = null;
 	  this.encoding = false;
 	  this.packetBuffer = [];
 	  this.encoder = new parser.Encoder();
@@ -21945,7 +22392,9 @@
 	Manager.prototype.emitAll = function() {
 	  this.emit.apply(this, arguments);
 	  for (var nsp in this.nsps) {
-	    this.nsps[nsp].emit.apply(this.nsps[nsp], arguments);
+	    if (has.call(this.nsps, nsp)) {
+	      this.nsps[nsp].emit.apply(this.nsps[nsp], arguments);
+	    }
 	  }
 	};
 
@@ -21957,7 +22406,9 @@
 
 	Manager.prototype.updateSocketIds = function(){
 	  for (var nsp in this.nsps) {
-	    this.nsps[nsp].id = this.engine.id;
+	    if (has.call(this.nsps, nsp)) {
+	      this.nsps[nsp].id = this.engine.id;
+	    }
 	  }
 	};
 
@@ -22149,9 +22600,32 @@
 	  // add new subs
 	  var socket = this.engine;
 	  this.subs.push(on(socket, 'data', bind(this, 'ondata')));
-	  this.subs.push(on(this.decoder, 'decoded', bind(this, 'ondecoded')));
+	  this.subs.push(on(socket, 'ping', bind(this, 'onping')));
+	  this.subs.push(on(socket, 'pong', bind(this, 'onpong')));
 	  this.subs.push(on(socket, 'error', bind(this, 'onerror')));
 	  this.subs.push(on(socket, 'close', bind(this, 'onclose')));
+	  this.subs.push(on(this.decoder, 'decoded', bind(this, 'ondecoded')));
+	};
+
+	/**
+	 * Called upon a ping.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.onping = function(){
+	  this.lastPing = new Date;
+	  this.emitAll('ping');
+	};
+
+	/**
+	 * Called upon a packet.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.onpong = function(){
+	  this.emitAll('pong', new Date - this.lastPing);
 	};
 
 	/**
@@ -22198,13 +22672,23 @@
 	    socket = new Socket(this, nsp);
 	    this.nsps[nsp] = socket;
 	    var self = this;
+	    socket.on('connecting', onConnecting);
 	    socket.on('connect', function(){
 	      socket.id = self.engine.id;
-	      if (!~indexOf(self.connected, socket)) {
-	        self.connected.push(socket);
-	      }
 	    });
+
+	    if (this.autoConnect) {
+	      // manually call here since connecting evnet is fired before listening
+	      onConnecting();
+	    }
 	  }
+
+	  function onConnecting() {
+	    if (!~indexOf(self.connecting, socket)) {
+	      self.connecting.push(socket);
+	    }
+	  }
+
 	  return socket;
 	};
 
@@ -22215,9 +22699,9 @@
 	 */
 
 	Manager.prototype.destroy = function(socket){
-	  var index = indexOf(this.connected, socket);
-	  if (~index) this.connected.splice(index, 1);
-	  if (this.connected.length) return;
+	  var index = indexOf(this.connecting, socket);
+	  if (~index) this.connecting.splice(index, 1);
+	  if (this.connecting.length) return;
 
 	  this.close();
 	};
@@ -22238,7 +22722,7 @@
 	    self.encoding = true;
 	    this.encoder.encode(packet, function(encodedPackets) {
 	      for (var i = 0; i < encodedPackets.length; i++) {
-	        self.engine.write(encodedPackets[i]);
+	        self.engine.write(encodedPackets[i], packet.options);
 	      }
 	      self.encoding = false;
 	      self.processPacketQueue();
@@ -22269,11 +22753,14 @@
 	 */
 
 	Manager.prototype.cleanup = function(){
+	  debug('cleanup');
+
 	  var sub;
 	  while (sub = this.subs.shift()) sub.destroy();
 
 	  this.packetBuffer = [];
 	  this.encoding = false;
+	  this.lastPing = null;
 
 	  this.decoder.destroy();
 	};
@@ -22286,10 +22773,17 @@
 
 	Manager.prototype.close =
 	Manager.prototype.disconnect = function(){
+	  debug('disconnect');
 	  this.skipReconnect = true;
+	  this.reconnecting = false;
+	  if ('opening' == this.readyState) {
+	    // `onclose` will not fire because
+	    // an open event never happened
+	    this.cleanup();
+	  }
 	  this.backoff.reset();
 	  this.readyState = 'closed';
-	  this.engine && this.engine.close();
+	  if (this.engine) this.engine.close();
 	};
 
 	/**
@@ -22299,11 +22793,13 @@
 	 */
 
 	Manager.prototype.onclose = function(reason){
-	  debug('close');
+	  debug('onclose');
+
 	  this.cleanup();
 	  this.backoff.reset();
 	  this.readyState = 'closed';
 	  this.emit('close', reason);
+
 	  if (this._reconnection && !this.skipReconnect) {
 	    this.reconnect();
 	  }
@@ -22377,19 +22873,19 @@
 
 
 /***/ },
-/* 172 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	module.exports =  __webpack_require__(173);
+	module.exports =  __webpack_require__(175);
 
 
 /***/ },
-/* 173 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	module.exports = __webpack_require__(174);
+	module.exports = __webpack_require__(176);
 
 	/**
 	 * Exports parser
@@ -22397,25 +22893,25 @@
 	 * @api public
 	 *
 	 */
-	module.exports.parser = __webpack_require__(182);
+	module.exports.parser = __webpack_require__(183);
 
 
 /***/ },
-/* 174 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 
-	var transports = __webpack_require__(175);
-	var Emitter = __webpack_require__(168);
-	var debug = __webpack_require__(194)('engine.io-client:socket');
-	var index = __webpack_require__(200);
-	var parser = __webpack_require__(182);
-	var parseuri = __webpack_require__(201);
-	var parsejson = __webpack_require__(202);
-	var parseqs = __webpack_require__(192);
+	var transports = __webpack_require__(177);
+	var Emitter = __webpack_require__(192);
+	var debug = __webpack_require__(162)('engine.io-client:socket');
+	var index = __webpack_require__(199);
+	var parser = __webpack_require__(183);
+	var parseuri = __webpack_require__(161);
+	var parsejson = __webpack_require__(200);
+	var parseqs = __webpack_require__(193);
 
 	/**
 	 * Module exports.
@@ -22451,24 +22947,20 @@
 
 	  if (uri) {
 	    uri = parseuri(uri);
-	    opts.host = uri.host;
+	    opts.hostname = uri.host;
 	    opts.secure = uri.protocol == 'https' || uri.protocol == 'wss';
 	    opts.port = uri.port;
 	    if (uri.query) opts.query = uri.query;
+	  } else if (opts.host) {
+	    opts.hostname = parseuri(opts.host).host;
 	  }
 
 	  this.secure = null != opts.secure ? opts.secure :
 	    (global.location && 'https:' == location.protocol);
 
-	  if (opts.host) {
-	    var pieces = opts.host.split(':');
-	    opts.hostname = pieces.shift();
-	    if (pieces.length) {
-	      opts.port = pieces.pop();
-	    } else if (!opts.port) {
-	      // if no port is specified manually, use the protocol default
-	      opts.port = this.secure ? '443' : '80';
-	    }
+	  if (opts.hostname && !opts.port) {
+	    // if no port is specified manually, use the protocol default
+	    opts.port = this.secure ? '443' : '80';
 	  }
 
 	  this.agent = opts.agent || false;
@@ -22490,11 +22982,16 @@
 	  this.transports = opts.transports || ['polling', 'websocket'];
 	  this.readyState = '';
 	  this.writeBuffer = [];
-	  this.callbackBuffer = [];
 	  this.policyPort = opts.policyPort || 843;
 	  this.rememberUpgrade = opts.rememberUpgrade || false;
 	  this.binaryType = null;
 	  this.onlyBinaryUpgrades = opts.onlyBinaryUpgrades;
+	  this.perMessageDeflate = false !== opts.perMessageDeflate ? (opts.perMessageDeflate || {}) : false;
+
+	  if (true === this.perMessageDeflate) this.perMessageDeflate = {};
+	  if (this.perMessageDeflate && null == this.perMessageDeflate.threshold) {
+	    this.perMessageDeflate.threshold = 1024;
+	  }
 
 	  // SSL options for Node.js client
 	  this.pfx = opts.pfx || null;
@@ -22503,7 +23000,15 @@
 	  this.cert = opts.cert || null;
 	  this.ca = opts.ca || null;
 	  this.ciphers = opts.ciphers || null;
-	  this.rejectUnauthorized = opts.rejectUnauthorized || null;
+	  this.rejectUnauthorized = opts.rejectUnauthorized === undefined ? null : opts.rejectUnauthorized;
+
+	  // other options for Node.js client
+	  var freeGlobal = typeof global == 'object' && global;
+	  if (freeGlobal.global === freeGlobal) {
+	    if (opts.extraHeaders && Object.keys(opts.extraHeaders).length > 0) {
+	      this.extraHeaders = opts.extraHeaders;
+	    }
+	  }
 
 	  this.open();
 	}
@@ -22530,9 +23035,9 @@
 	 */
 
 	Socket.Socket = Socket;
-	Socket.Transport = __webpack_require__(181);
-	Socket.transports = __webpack_require__(175);
-	Socket.parser = __webpack_require__(182);
+	Socket.Transport = __webpack_require__(182);
+	Socket.transports = __webpack_require__(177);
+	Socket.parser = __webpack_require__(183);
 
 	/**
 	 * Creates transport of the given type.
@@ -22576,7 +23081,9 @@
 	    cert: this.cert,
 	    ca: this.ca,
 	    ciphers: this.ciphers,
-	    rejectUnauthorized: this.rejectUnauthorized
+	    rejectUnauthorized: this.rejectUnauthorized,
+	    perMessageDeflate: this.perMessageDeflate,
+	    extraHeaders: this.extraHeaders
 	  });
 
 	  return transport;
@@ -22601,7 +23108,7 @@
 	  var transport;
 	  if (this.rememberUpgrade && Socket.priorWebsocketSuccess && this.transports.indexOf('websocket') != -1) {
 	    transport = 'websocket';
-	  } else if (0 == this.transports.length) {
+	  } else if (0 === this.transports.length) {
 	    // Emit error on next tick so it can be listened to
 	    var self = this;
 	    setTimeout(function() {
@@ -22614,7 +23121,6 @@
 	  this.readyState = 'opening';
 
 	  // Retry with the next transport if the transport is disabled (jsonp: false)
-	  var transport;
 	  try {
 	    transport = this.createTransport(transport);
 	  } catch (e) {
@@ -22824,12 +23330,13 @@
 
 	      case 'pong':
 	        this.setPing();
+	        this.emit('pong');
 	        break;
 
 	      case 'error':
 	        var err = new Error('server error');
 	        err.code = packet.data;
-	        this.emit('error', err);
+	        this.onError(err);
 	        break;
 
 	      case 'message':
@@ -22901,11 +23408,14 @@
 	/**
 	* Sends a ping packet.
 	*
-	* @api public
+	* @api private
 	*/
 
 	Socket.prototype.ping = function () {
-	  this.sendPacket('ping');
+	  var self = this;
+	  this.sendPacket('ping', function(){
+	    self.emit('ping');
+	  });
 	};
 
 	/**
@@ -22915,21 +23425,14 @@
 	 */
 
 	Socket.prototype.onDrain = function() {
-	  for (var i = 0; i < this.prevBufferLen; i++) {
-	    if (this.callbackBuffer[i]) {
-	      this.callbackBuffer[i]();
-	    }
-	  }
-
 	  this.writeBuffer.splice(0, this.prevBufferLen);
-	  this.callbackBuffer.splice(0, this.prevBufferLen);
 
 	  // setting prevBufferLen = 0 is very important
 	  // for example, when upgrading, upgrade packet is sent over,
 	  // and a nonzero prevBufferLen could cause problems on `drain`
 	  this.prevBufferLen = 0;
 
-	  if (this.writeBuffer.length == 0) {
+	  if (0 === this.writeBuffer.length) {
 	    this.emit('drain');
 	  } else {
 	    this.flush();
@@ -22959,13 +23462,14 @@
 	 *
 	 * @param {String} message.
 	 * @param {Function} callback function.
+	 * @param {Object} options.
 	 * @return {Socket} for chaining.
 	 * @api public
 	 */
 
 	Socket.prototype.write =
-	Socket.prototype.send = function (msg, fn) {
-	  this.sendPacket('message', msg, fn);
+	Socket.prototype.send = function (msg, options, fn) {
+	  this.sendPacket('message', msg, options, fn);
 	  return this;
 	};
 
@@ -22974,19 +23478,37 @@
 	 *
 	 * @param {String} packet type.
 	 * @param {String} data.
+	 * @param {Object} options.
 	 * @param {Function} callback function.
 	 * @api private
 	 */
 
-	Socket.prototype.sendPacket = function (type, data, fn) {
+	Socket.prototype.sendPacket = function (type, data, options, fn) {
+	  if('function' == typeof data) {
+	    fn = data;
+	    data = undefined;
+	  }
+
+	  if ('function' == typeof options) {
+	    fn = options;
+	    options = null;
+	  }
+
 	  if ('closing' == this.readyState || 'closed' == this.readyState) {
 	    return;
 	  }
 
-	  var packet = { type: type, data: data };
+	  options = options || {};
+	  options.compress = false !== options.compress;
+
+	  var packet = {
+	    type: type,
+	    data: data,
+	    options: options
+	  };
 	  this.emit('packetCreate', packet);
 	  this.writeBuffer.push(packet);
-	  this.callbackBuffer.push(fn);
+	  if (fn) this.once('flush', fn);
 	  this.flush();
 	};
 
@@ -23002,24 +23524,6 @@
 
 	    var self = this;
 
-	    function close() {
-	      self.onClose('forced close');
-	      debug('socket closing - telling transport to close');
-	      self.transport.close();
-	    }
-
-	    function cleanupAndClose() {
-	      self.removeListener('upgrade', cleanupAndClose);
-	      self.removeListener('upgradeError', cleanupAndClose);
-	      close();
-	    }
-
-	    function waitForUpgrade() {
-	      // wait for upgrade to finish since we can't send packets while pausing a transport
-	      self.once('upgrade', cleanupAndClose);
-	      self.once('upgradeError', cleanupAndClose);
-	    }
-
 	    if (this.writeBuffer.length) {
 	      this.once('drain', function() {
 	        if (this.upgrading) {
@@ -23033,6 +23537,24 @@
 	    } else {
 	      close();
 	    }
+	  }
+
+	  function close() {
+	    self.onClose('forced close');
+	    debug('socket closing - telling transport to close');
+	    self.transport.close();
+	  }
+
+	  function cleanupAndClose() {
+	    self.removeListener('upgrade', cleanupAndClose);
+	    self.removeListener('upgradeError', cleanupAndClose);
+	    close();
+	  }
+
+	  function waitForUpgrade() {
+	    // wait for upgrade to finish since we can't send packets while pausing a transport
+	    self.once('upgrade', cleanupAndClose);
+	    self.once('upgradeError', cleanupAndClose);
 	  }
 
 	  return this;
@@ -23066,14 +23588,6 @@
 	    clearTimeout(this.pingIntervalTimer);
 	    clearTimeout(this.pingTimeoutTimer);
 
-	    // clean buffers in next tick, so developers can still
-	    // grab the buffers on `close` event
-	    setTimeout(function() {
-	      self.writeBuffer = [];
-	      self.callbackBuffer = [];
-	      self.prevBufferLen = 0;
-	    }, 0);
-
 	    // stop event from firing again for transport
 	    this.transport.removeAllListeners('close');
 
@@ -23091,6 +23605,11 @@
 
 	    // emit close event
 	    this.emit('close', reason, desc);
+
+	    // clean buffers after, so users can still
+	    // grab the buffers on `close` event
+	    self.writeBuffer = [];
+	    self.prevBufferLen = 0;
 	  }
 	};
 
@@ -23113,17 +23632,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 175 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies
 	 */
 
-	var XMLHttpRequest = __webpack_require__(176);
-	var XHR = __webpack_require__(179);
-	var JSONP = __webpack_require__(197);
-	var websocket = __webpack_require__(198);
+	var XMLHttpRequest = __webpack_require__(178);
+	var XHR = __webpack_require__(180);
+	var JSONP = __webpack_require__(196);
+	var websocket = __webpack_require__(197);
 
 	/**
 	 * Export transports.
@@ -23173,11 +23692,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 176 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// browser shim for xmlhttprequest module
-	var hasCORS = __webpack_require__(177);
+	var hasCORS = __webpack_require__(179);
 
 	module.exports = function(opts) {
 	  var xdomain = opts.xdomain;
@@ -23215,16 +23734,10 @@
 
 
 /***/ },
-/* 177 */
-/***/ function(module, exports, __webpack_require__) {
+/* 179 */
+/***/ function(module, exports) {
 
 	
-	/**
-	 * Module dependencies.
-	 */
-
-	var global = __webpack_require__(178);
-
 	/**
 	 * Module exports.
 	 *
@@ -23234,8 +23747,8 @@
 	 */
 
 	try {
-	  module.exports = 'XMLHttpRequest' in global &&
-	    'withCredentials' in new global.XMLHttpRequest();
+	  module.exports = typeof XMLHttpRequest !== 'undefined' &&
+	    'withCredentials' in new XMLHttpRequest();
 	} catch (err) {
 	  // if XMLHttp support is disabled in IE then it will throw
 	  // when trying to create
@@ -23244,32 +23757,18 @@
 
 
 /***/ },
-/* 178 */
-/***/ function(module, exports) {
-
-	
-	/**
-	 * Returns `this`. Execute this without a "context" (i.e. without it being
-	 * attached to an object of the left-hand side), and `this` points to the
-	 * "global" scope of the current JS execution.
-	 */
-
-	module.exports = (function () { return this; })();
-
-
-/***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module requirements.
 	 */
 
-	var XMLHttpRequest = __webpack_require__(176);
-	var Polling = __webpack_require__(180);
-	var Emitter = __webpack_require__(168);
-	var inherit = __webpack_require__(193);
-	var debug = __webpack_require__(194)('engine.io-client:polling-xhr');
+	var XMLHttpRequest = __webpack_require__(178);
+	var Polling = __webpack_require__(181);
+	var Emitter = __webpack_require__(192);
+	var inherit = __webpack_require__(194);
+	var debug = __webpack_require__(162)('engine.io-client:polling-xhr');
 
 	/**
 	 * Module exports.
@@ -23306,6 +23805,8 @@
 	    this.xd = opts.hostname != global.location.hostname ||
 	      port != opts.port;
 	    this.xs = opts.secure != isSSL;
+	  } else {
+	    this.extraHeaders = opts.extraHeaders;
 	  }
 	}
 
@@ -23345,6 +23846,9 @@
 	  opts.ca = this.ca;
 	  opts.ciphers = this.ciphers;
 	  opts.rejectUnauthorized = this.rejectUnauthorized;
+
+	  // other options for Node.js client
+	  opts.extraHeaders = this.extraHeaders;
 
 	  return new Request(opts);
 	};
@@ -23415,6 +23919,9 @@
 	  this.ciphers = opts.ciphers;
 	  this.rejectUnauthorized = opts.rejectUnauthorized;
 
+	  // other options for Node.js client
+	  this.extraHeaders = opts.extraHeaders;
+
 	  this.create();
 	}
 
@@ -23448,6 +23955,16 @@
 	  try {
 	    debug('xhr open %s: %s', this.method, this.uri);
 	    xhr.open(this.method, this.uri, this.async);
+	    try {
+	      if (this.extraHeaders) {
+	        xhr.setDisableHeaderCheck(true);
+	        for (var i in this.extraHeaders) {
+	          if (this.extraHeaders.hasOwnProperty(i)) {
+	            xhr.setRequestHeader(i, this.extraHeaders[i]);
+	          }
+	        }
+	      }
+	    } catch (e) {}
 	    if (this.supportsBinary) {
 	      // This has to be done after open because Firefox is stupid
 	      // http://stackoverflow.com/questions/13216903/get-binary-data-with-xmlhttprequest-in-a-firefox-extension
@@ -23591,7 +24108,17 @@
 	      if (!this.supportsBinary) {
 	        data = this.xhr.responseText;
 	      } else {
-	        data = 'ok';
+	        try {
+	          data = String.fromCharCode.apply(null, new Uint8Array(this.xhr.response));
+	        } catch (e) {
+	          var ui8Arr = new Uint8Array(this.xhr.response);
+	          var dataArray = [];
+	          for (var idx = 0, length = ui8Arr.length; idx < length; idx++) {
+	            dataArray.push(ui8Arr[idx]);
+	          }
+
+	          data = String.fromCharCode.apply(null, dataArray);
+	        }
 	      }
 	    }
 	  } catch (e) {
@@ -23649,18 +24176,19 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var Transport = __webpack_require__(181);
-	var parseqs = __webpack_require__(192);
-	var parser = __webpack_require__(182);
-	var inherit = __webpack_require__(193);
-	var debug = __webpack_require__(194)('engine.io-client:polling');
+	var Transport = __webpack_require__(182);
+	var parseqs = __webpack_require__(193);
+	var parser = __webpack_require__(183);
+	var inherit = __webpack_require__(194);
+	var yeast = __webpack_require__(195);
+	var debug = __webpack_require__(162)('engine.io-client:polling');
 
 	/**
 	 * Module exports.
@@ -23673,7 +24201,7 @@
 	 */
 
 	var hasXHR2 = (function() {
-	  var XMLHttpRequest = __webpack_require__(176);
+	  var XMLHttpRequest = __webpack_require__(178);
 	  var xhr = new XMLHttpRequest({ xdomain: false });
 	  return null != xhr.responseType;
 	})();
@@ -23875,7 +24403,7 @@
 
 	  // cache busting is forced
 	  if (false !== this.timestampRequests) {
-	    query[this.timestampParam] = +new Date + '-' + Transport.timestamps++;
+	    query[this.timestampParam] = yeast();
 	  }
 
 	  if (!this.supportsBinary && !query.sid) {
@@ -23895,20 +24423,21 @@
 	    query = '?' + query;
 	  }
 
-	  return schema + '://' + this.hostname + port + this.path + query;
+	  var ipv6 = this.hostname.indexOf(':') !== -1;
+	  return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
 	};
 
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var parser = __webpack_require__(182);
-	var Emitter = __webpack_require__(168);
+	var parser = __webpack_require__(183);
+	var Emitter = __webpack_require__(192);
 
 	/**
 	 * Module exports.
@@ -23944,6 +24473,9 @@
 	  this.ca = opts.ca;
 	  this.ciphers = opts.ciphers;
 	  this.rejectUnauthorized = opts.rejectUnauthorized;
+
+	  // other options for Node.js client
+	  this.extraHeaders = opts.extraHeaders;
 	}
 
 	/**
@@ -23951,13 +24483,6 @@
 	 */
 
 	Emitter(Transport.prototype);
-
-	/**
-	 * A counter used to prevent collisions in the timestamps used
-	 * for cache busting.
-	 */
-
-	Transport.timestamps = 0;
 
 	/**
 	 * Emits an error.
@@ -24065,19 +24590,19 @@
 
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 
-	var keys = __webpack_require__(183);
-	var hasBinary = __webpack_require__(184);
-	var sliceBuffer = __webpack_require__(186);
-	var base64encoder = __webpack_require__(187);
-	var after = __webpack_require__(188);
-	var utf8 = __webpack_require__(189);
+	var keys = __webpack_require__(184);
+	var hasBinary = __webpack_require__(185);
+	var sliceBuffer = __webpack_require__(187);
+	var base64encoder = __webpack_require__(188);
+	var after = __webpack_require__(189);
+	var utf8 = __webpack_require__(190);
 
 	/**
 	 * Check if we are running an android browser. That requires us to use
@@ -24255,7 +24780,7 @@
 
 	exports.encodeBase64Packet = function(packet, callback) {
 	  var message = 'b' + exports.packets[packet.type];
-	  if (Blob && packet.data instanceof Blob) {
+	  if (Blob && packet.data instanceof global.Blob) {
 	    var fr = new FileReader();
 	    fr.onload = function() {
 	      var b64 = fr.result.split(',')[1];
@@ -24666,7 +25191,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports) {
 
 	
@@ -24691,7 +25216,7 @@
 
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -24699,7 +25224,7 @@
 	 * Module requirements.
 	 */
 
-	var isArray = __webpack_require__(185);
+	var isArray = __webpack_require__(186);
 
 	/**
 	 * Module exports.
@@ -24756,7 +25281,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -24765,7 +25290,7 @@
 
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports) {
 
 	/**
@@ -24800,7 +25325,7 @@
 
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports) {
 
 	/*
@@ -24865,7 +25390,7 @@
 
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports) {
 
 	module.exports = after
@@ -24899,7 +25424,7 @@
 
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/utf8js v2.0.0 by @mathias */
@@ -25145,23 +25670,7 @@
 
 	}(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(190)(module), (function() { return this; }())))
-
-/***/ },
-/* 190 */
-/***/ function(module, exports) {
-
-	module.exports = function(module) {
-		if(!module.webpackPolyfill) {
-			module.deprecate = function() {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	}
-
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(167)(module), (function() { return this; }())))
 
 /***/ },
 /* 191 */
@@ -25270,6 +25779,176 @@
 /* 192 */
 /***/ function(module, exports) {
 
+	
+	/**
+	 * Expose `Emitter`.
+	 */
+
+	module.exports = Emitter;
+
+	/**
+	 * Initialize a new `Emitter`.
+	 *
+	 * @api public
+	 */
+
+	function Emitter(obj) {
+	  if (obj) return mixin(obj);
+	};
+
+	/**
+	 * Mixin the emitter properties.
+	 *
+	 * @param {Object} obj
+	 * @return {Object}
+	 * @api private
+	 */
+
+	function mixin(obj) {
+	  for (var key in Emitter.prototype) {
+	    obj[key] = Emitter.prototype[key];
+	  }
+	  return obj;
+	}
+
+	/**
+	 * Listen on the given `event` with `fn`.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.on =
+	Emitter.prototype.addEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	  (this._callbacks[event] = this._callbacks[event] || [])
+	    .push(fn);
+	  return this;
+	};
+
+	/**
+	 * Adds an `event` listener that will be invoked a single
+	 * time then automatically removed.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.once = function(event, fn){
+	  var self = this;
+	  this._callbacks = this._callbacks || {};
+
+	  function on() {
+	    self.off(event, on);
+	    fn.apply(this, arguments);
+	  }
+
+	  on.fn = fn;
+	  this.on(event, on);
+	  return this;
+	};
+
+	/**
+	 * Remove the given callback for `event` or all
+	 * registered callbacks.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.off =
+	Emitter.prototype.removeListener =
+	Emitter.prototype.removeAllListeners =
+	Emitter.prototype.removeEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+
+	  // all
+	  if (0 == arguments.length) {
+	    this._callbacks = {};
+	    return this;
+	  }
+
+	  // specific event
+	  var callbacks = this._callbacks[event];
+	  if (!callbacks) return this;
+
+	  // remove all handlers
+	  if (1 == arguments.length) {
+	    delete this._callbacks[event];
+	    return this;
+	  }
+
+	  // remove specific handler
+	  var cb;
+	  for (var i = 0; i < callbacks.length; i++) {
+	    cb = callbacks[i];
+	    if (cb === fn || cb.fn === fn) {
+	      callbacks.splice(i, 1);
+	      break;
+	    }
+	  }
+	  return this;
+	};
+
+	/**
+	 * Emit `event` with the given args.
+	 *
+	 * @param {String} event
+	 * @param {Mixed} ...
+	 * @return {Emitter}
+	 */
+
+	Emitter.prototype.emit = function(event){
+	  this._callbacks = this._callbacks || {};
+	  var args = [].slice.call(arguments, 1)
+	    , callbacks = this._callbacks[event];
+
+	  if (callbacks) {
+	    callbacks = callbacks.slice(0);
+	    for (var i = 0, len = callbacks.length; i < len; ++i) {
+	      callbacks[i].apply(this, args);
+	    }
+	  }
+
+	  return this;
+	};
+
+	/**
+	 * Return array of callbacks for `event`.
+	 *
+	 * @param {String} event
+	 * @return {Array}
+	 * @api public
+	 */
+
+	Emitter.prototype.listeners = function(event){
+	  this._callbacks = this._callbacks || {};
+	  return this._callbacks[event] || [];
+	};
+
+	/**
+	 * Check if this emitter has `event` handlers.
+	 *
+	 * @param {String} event
+	 * @return {Boolean}
+	 * @api public
+	 */
+
+	Emitter.prototype.hasListeners = function(event){
+	  return !! this.listeners(event).length;
+	};
+
+
+/***/ },
+/* 193 */
+/***/ function(module, exports) {
+
 	/**
 	 * Compiles a querystring
 	 * Returns string representation of the object
@@ -25310,7 +25989,7 @@
 
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports) {
 
 	
@@ -25322,480 +26001,81 @@
 	};
 
 /***/ },
-/* 194 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	/**
-	 * This is the web browser implementation of `debug()`.
-	 *
-	 * Expose `debug()` as the module.
-	 */
-
-	exports = module.exports = __webpack_require__(195);
-	exports.log = log;
-	exports.formatArgs = formatArgs;
-	exports.save = save;
-	exports.load = load;
-	exports.useColors = useColors;
-
-	/**
-	 * Colors.
-	 */
-
-	exports.colors = [
-	  'lightseagreen',
-	  'forestgreen',
-	  'goldenrod',
-	  'dodgerblue',
-	  'darkorchid',
-	  'crimson'
-	];
-
-	/**
-	 * Currently only WebKit-based Web Inspectors, Firefox >= v31,
-	 * and the Firebug extension (any Firefox version) are known
-	 * to support "%c" CSS customizations.
-	 *
-	 * TODO: add a `localStorage` variable to explicitly enable/disable colors
-	 */
-
-	function useColors() {
-	  // is webkit? http://stackoverflow.com/a/16459606/376773
-	  return ('WebkitAppearance' in document.documentElement.style) ||
-	    // is firebug? http://stackoverflow.com/a/398120/376773
-	    (window.console && (console.firebug || (console.exception && console.table))) ||
-	    // is firefox >= v31?
-	    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-	    (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
-	}
-
-	/**
-	 * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
-	 */
-
-	exports.formatters.j = function(v) {
-	  return JSON.stringify(v);
-	};
-
-
-	/**
-	 * Colorize log arguments if enabled.
-	 *
-	 * @api public
-	 */
-
-	function formatArgs() {
-	  var args = arguments;
-	  var useColors = this.useColors;
-
-	  args[0] = (useColors ? '%c' : '')
-	    + this.namespace
-	    + (useColors ? ' %c' : ' ')
-	    + args[0]
-	    + (useColors ? '%c ' : ' ')
-	    + '+' + exports.humanize(this.diff);
-
-	  if (!useColors) return args;
-
-	  var c = 'color: ' + this.color;
-	  args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
-
-	  // the final "%c" is somewhat tricky, because there could be other
-	  // arguments passed either before or after the %c, so we need to
-	  // figure out the correct index to insert the CSS into
-	  var index = 0;
-	  var lastC = 0;
-	  args[0].replace(/%[a-z%]/g, function(match) {
-	    if ('%%' === match) return;
-	    index++;
-	    if ('%c' === match) {
-	      // we only are interested in the *last* %c
-	      // (the user may have provided their own)
-	      lastC = index;
-	    }
-	  });
-
-	  args.splice(lastC, 0, c);
-	  return args;
-	}
-
-	/**
-	 * Invokes `console.log()` when available.
-	 * No-op when `console.log` is not a "function".
-	 *
-	 * @api public
-	 */
-
-	function log() {
-	  // This hackery is required for IE8,
-	  // where the `console.log` function doesn't have 'apply'
-	  return 'object' == typeof console
-	    && 'function' == typeof console.log
-	    && Function.prototype.apply.call(console.log, console, arguments);
-	}
-
-	/**
-	 * Save `namespaces`.
-	 *
-	 * @param {String} namespaces
-	 * @api private
-	 */
-
-	function save(namespaces) {
-	  try {
-	    if (null == namespaces) {
-	      localStorage.removeItem('debug');
-	    } else {
-	      localStorage.debug = namespaces;
-	    }
-	  } catch(e) {}
-	}
-
-	/**
-	 * Load `namespaces`.
-	 *
-	 * @return {String} returns the previously persisted debug modes
-	 * @api private
-	 */
-
-	function load() {
-	  var r;
-	  try {
-	    r = localStorage.debug;
-	  } catch(e) {}
-	  return r;
-	}
-
-	/**
-	 * Enable namespaces listed in `localStorage.debug` initially.
-	 */
-
-	exports.enable(load());
-
-
-/***/ },
 /* 195 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	
+	'use strict';
+
+	var alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split('')
+	  , length = 64
+	  , map = {}
+	  , seed = 0
+	  , i = 0
+	  , prev;
+
 	/**
-	 * This is the common logic for both the Node.js and web browser
-	 * implementations of `debug()`.
+	 * Return a string representing the specified number.
 	 *
-	 * Expose `debug()` as the module.
-	 */
-
-	exports = module.exports = debug;
-	exports.coerce = coerce;
-	exports.disable = disable;
-	exports.enable = enable;
-	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(196);
-
-	/**
-	 * The currently active debug mode names, and names to skip.
-	 */
-
-	exports.names = [];
-	exports.skips = [];
-
-	/**
-	 * Map of special "%n" handling functions, for the debug "format" argument.
-	 *
-	 * Valid key names are a single, lowercased letter, i.e. "n".
-	 */
-
-	exports.formatters = {};
-
-	/**
-	 * Previously assigned color.
-	 */
-
-	var prevColor = 0;
-
-	/**
-	 * Previous log timestamp.
-	 */
-
-	var prevTime;
-
-	/**
-	 * Select a color.
-	 *
-	 * @return {Number}
-	 * @api private
-	 */
-
-	function selectColor() {
-	  return exports.colors[prevColor++ % exports.colors.length];
-	}
-
-	/**
-	 * Create a debugger with the given `namespace`.
-	 *
-	 * @param {String} namespace
-	 * @return {Function}
+	 * @param {Number} num The number to convert.
+	 * @returns {String} The string representation of the number.
 	 * @api public
 	 */
+	function encode(num) {
+	  var encoded = '';
 
-	function debug(namespace) {
+	  do {
+	    encoded = alphabet[num % length] + encoded;
+	    num = Math.floor(num / length);
+	  } while (num > 0);
 
-	  // define the `disabled` version
-	  function disabled() {
-	  }
-	  disabled.enabled = false;
-
-	  // define the `enabled` version
-	  function enabled() {
-
-	    var self = enabled;
-
-	    // set `diff` timestamp
-	    var curr = +new Date();
-	    var ms = curr - (prevTime || curr);
-	    self.diff = ms;
-	    self.prev = prevTime;
-	    self.curr = curr;
-	    prevTime = curr;
-
-	    // add the `color` if not set
-	    if (null == self.useColors) self.useColors = exports.useColors();
-	    if (null == self.color && self.useColors) self.color = selectColor();
-
-	    var args = Array.prototype.slice.call(arguments);
-
-	    args[0] = exports.coerce(args[0]);
-
-	    if ('string' !== typeof args[0]) {
-	      // anything else let's inspect with %o
-	      args = ['%o'].concat(args);
-	    }
-
-	    // apply any `formatters` transformations
-	    var index = 0;
-	    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
-	      // if we encounter an escaped % then don't increase the array index
-	      if (match === '%%') return match;
-	      index++;
-	      var formatter = exports.formatters[format];
-	      if ('function' === typeof formatter) {
-	        var val = args[index];
-	        match = formatter.call(self, val);
-
-	        // now we need to remove `args[index]` since it's inlined in the `format`
-	        args.splice(index, 1);
-	        index--;
-	      }
-	      return match;
-	    });
-
-	    if ('function' === typeof exports.formatArgs) {
-	      args = exports.formatArgs.apply(self, args);
-	    }
-	    var logFn = enabled.log || exports.log || console.log.bind(console);
-	    logFn.apply(self, args);
-	  }
-	  enabled.enabled = true;
-
-	  var fn = exports.enabled(namespace) ? enabled : disabled;
-
-	  fn.namespace = namespace;
-
-	  return fn;
+	  return encoded;
 	}
 
 	/**
-	 * Enables a debug mode by namespaces. This can include modes
-	 * separated by a colon and wildcards.
+	 * Return the integer value specified by the given string.
 	 *
-	 * @param {String} namespaces
+	 * @param {String} str The string to convert.
+	 * @returns {Number} The integer value represented by the string.
 	 * @api public
 	 */
+	function decode(str) {
+	  var decoded = 0;
 
-	function enable(namespaces) {
-	  exports.save(namespaces);
-
-	  var split = (namespaces || '').split(/[\s,]+/);
-	  var len = split.length;
-
-	  for (var i = 0; i < len; i++) {
-	    if (!split[i]) continue; // ignore empty strings
-	    namespaces = split[i].replace(/\*/g, '.*?');
-	    if (namespaces[0] === '-') {
-	      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
-	    } else {
-	      exports.names.push(new RegExp('^' + namespaces + '$'));
-	    }
+	  for (i = 0; i < str.length; i++) {
+	    decoded = decoded * length + map[str.charAt(i)];
 	  }
+
+	  return decoded;
 	}
 
 	/**
-	 * Disable debug output.
+	 * Yeast: A tiny growing id generator.
 	 *
+	 * @returns {String} A unique id.
 	 * @api public
 	 */
+	function yeast() {
+	  var now = encode(+new Date());
 
-	function disable() {
-	  exports.enable('');
+	  if (now !== prev) return seed = 0, prev = now;
+	  return now +'.'+ encode(seed++);
 	}
 
-	/**
-	 * Returns true if the given mode name is enabled, false otherwise.
-	 *
-	 * @param {String} name
-	 * @return {Boolean}
-	 * @api public
-	 */
+	//
+	// Map each character to its index.
+	//
+	for (; i < length; i++) map[alphabet[i]] = i;
 
-	function enabled(name) {
-	  var i, len;
-	  for (i = 0, len = exports.skips.length; i < len; i++) {
-	    if (exports.skips[i].test(name)) {
-	      return false;
-	    }
-	  }
-	  for (i = 0, len = exports.names.length; i < len; i++) {
-	    if (exports.names[i].test(name)) {
-	      return true;
-	    }
-	  }
-	  return false;
-	}
-
-	/**
-	 * Coerce `val`.
-	 *
-	 * @param {Mixed} val
-	 * @return {Mixed}
-	 * @api private
-	 */
-
-	function coerce(val) {
-	  if (val instanceof Error) return val.stack || val.message;
-	  return val;
-	}
+	//
+	// Expose the `yeast`, `encode` and `decode` functions.
+	//
+	yeast.encode = encode;
+	yeast.decode = decode;
+	module.exports = yeast;
 
 
 /***/ },
 /* 196 */
-/***/ function(module, exports) {
-
-	/**
-	 * Helpers.
-	 */
-
-	var s = 1000;
-	var m = s * 60;
-	var h = m * 60;
-	var d = h * 24;
-	var y = d * 365.25;
-
-	/**
-	 * Parse or format the given `val`.
-	 *
-	 * Options:
-	 *
-	 *  - `long` verbose formatting [false]
-	 *
-	 * @param {String|Number} val
-	 * @param {Object} options
-	 * @return {String|Number}
-	 * @api public
-	 */
-
-	module.exports = function(val, options){
-	  options = options || {};
-	  if ('string' == typeof val) return parse(val);
-	  return options.long
-	    ? long(val)
-	    : short(val);
-	};
-
-	/**
-	 * Parse the given `str` and return milliseconds.
-	 *
-	 * @param {String} str
-	 * @return {Number}
-	 * @api private
-	 */
-
-	function parse(str) {
-	  var match = /^((?:\d+)?\.?\d+) *(ms|seconds?|s|minutes?|m|hours?|h|days?|d|years?|y)?$/i.exec(str);
-	  if (!match) return;
-	  var n = parseFloat(match[1]);
-	  var type = (match[2] || 'ms').toLowerCase();
-	  switch (type) {
-	    case 'years':
-	    case 'year':
-	    case 'y':
-	      return n * y;
-	    case 'days':
-	    case 'day':
-	    case 'd':
-	      return n * d;
-	    case 'hours':
-	    case 'hour':
-	    case 'h':
-	      return n * h;
-	    case 'minutes':
-	    case 'minute':
-	    case 'm':
-	      return n * m;
-	    case 'seconds':
-	    case 'second':
-	    case 's':
-	      return n * s;
-	    case 'ms':
-	      return n;
-	  }
-	}
-
-	/**
-	 * Short format for `ms`.
-	 *
-	 * @param {Number} ms
-	 * @return {String}
-	 * @api private
-	 */
-
-	function short(ms) {
-	  if (ms >= d) return Math.round(ms / d) + 'd';
-	  if (ms >= h) return Math.round(ms / h) + 'h';
-	  if (ms >= m) return Math.round(ms / m) + 'm';
-	  if (ms >= s) return Math.round(ms / s) + 's';
-	  return ms + 'ms';
-	}
-
-	/**
-	 * Long format for `ms`.
-	 *
-	 * @param {Number} ms
-	 * @return {String}
-	 * @api private
-	 */
-
-	function long(ms) {
-	  return plural(ms, d, 'day')
-	    || plural(ms, h, 'hour')
-	    || plural(ms, m, 'minute')
-	    || plural(ms, s, 'second')
-	    || ms + ' ms';
-	}
-
-	/**
-	 * Pluralization helper.
-	 */
-
-	function plural(ms, n, name) {
-	  if (ms < n) return;
-	  if (ms < n * 1.5) return Math.floor(ms / n) + ' ' + name;
-	  return Math.ceil(ms / n) + ' ' + name + 's';
-	}
-
-
-/***/ },
-/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -25803,8 +26083,8 @@
 	 * Module requirements.
 	 */
 
-	var Polling = __webpack_require__(180);
-	var inherit = __webpack_require__(193);
+	var Polling = __webpack_require__(181);
+	var inherit = __webpack_require__(194);
 
 	/**
 	 * Module exports.
@@ -25932,7 +26212,12 @@
 	  };
 
 	  var insertAt = document.getElementsByTagName('script')[0];
-	  insertAt.parentNode.insertBefore(script, insertAt);
+	  if (insertAt) {
+	    insertAt.parentNode.insertBefore(script, insertAt);
+	  }
+	  else {
+	    (document.head || document.body).appendChild(script);
+	  }
 	  this.script = script;
 
 	  var isUAgecko = 'undefined' != typeof navigator && /gecko/i.test(navigator.userAgent);
@@ -26035,26 +26320,28 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 198 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
+	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 
-	var Transport = __webpack_require__(181);
-	var parser = __webpack_require__(182);
-	var parseqs = __webpack_require__(192);
-	var inherit = __webpack_require__(193);
-	var debug = __webpack_require__(194)('engine.io-client:websocket');
+	var Transport = __webpack_require__(182);
+	var parser = __webpack_require__(183);
+	var parseqs = __webpack_require__(193);
+	var inherit = __webpack_require__(194);
+	var yeast = __webpack_require__(195);
+	var debug = __webpack_require__(162)('engine.io-client:websocket');
+	var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 
 	/**
-	 * `ws` exposes a WebSocket-compatible interface in
-	 * Node, or the `WebSocket` or `MozWebSocket` globals
-	 * in the browser.
+	 * Get either the `WebSocket` or `MozWebSocket` globals
+	 * in the browser or the WebSocket-compatible interface
+	 * exposed by `ws` for Node environment.
 	 */
 
-	var WebSocket = __webpack_require__(199);
+	var WebSocket = BrowserWebSocket || (typeof window !== 'undefined' ? null : __webpack_require__(198));
 
 	/**
 	 * Module exports.
@@ -26074,6 +26361,7 @@
 	  if (forceBase64) {
 	    this.supportsBinary = false;
 	  }
+	  this.perMessageDeflate = opts.perMessageDeflate;
 	  Transport.call(this, opts);
 	}
 
@@ -26112,7 +26400,10 @@
 	  var self = this;
 	  var uri = this.uri();
 	  var protocols = void(0);
-	  var opts = { agent: this.agent };
+	  var opts = {
+	    agent: this.agent,
+	    perMessageDeflate: this.perMessageDeflate
+	  };
 
 	  // SSL options for Node.js client
 	  opts.pfx = this.pfx;
@@ -26122,14 +26413,23 @@
 	  opts.ca = this.ca;
 	  opts.ciphers = this.ciphers;
 	  opts.rejectUnauthorized = this.rejectUnauthorized;
+	  if (this.extraHeaders) {
+	    opts.headers = this.extraHeaders;
+	  }
 
-	  this.ws = new WebSocket(uri, protocols, opts);
+	  this.ws = BrowserWebSocket ? new WebSocket(uri) : new WebSocket(uri, protocols, opts);
 
 	  if (this.ws.binaryType === undefined) {
 	    this.supportsBinary = false;
 	  }
 
-	  this.ws.binaryType = 'arraybuffer';
+	  if (this.ws.supports && this.ws.supports.binary) {
+	    this.supportsBinary = true;
+	    this.ws.binaryType = 'buffer';
+	  } else {
+	    this.ws.binaryType = 'arraybuffer';
+	  }
+
 	  this.addEventListeners();
 	};
 
@@ -26183,28 +26483,57 @@
 	WS.prototype.write = function(packets){
 	  var self = this;
 	  this.writable = false;
+
 	  // encodePacket efficient as it uses WS framing
 	  // no need for encodePayload
-	  for (var i = 0, l = packets.length; i < l; i++) {
-	    parser.encodePacket(packets[i], this.supportsBinary, function(data) {
-	      //Sometimes the websocket has already been closed but the browser didn't
-	      //have a chance of informing us about it yet, in that case send will
-	      //throw an error
-	      try {
-	        self.ws.send(data);
-	      } catch (e){
-	        debug('websocket closed before onclose event');
-	      }
-	    });
+	  var total = packets.length;
+	  for (var i = 0, l = total; i < l; i++) {
+	    (function(packet) {
+	      parser.encodePacket(packet, self.supportsBinary, function(data) {
+	        if (!BrowserWebSocket) {
+	          // always create a new object (GH-437)
+	          var opts = {};
+	          if (packet.options) {
+	            opts.compress = packet.options.compress;
+	          }
+
+	          if (self.perMessageDeflate) {
+	            var len = 'string' == typeof data ? global.Buffer.byteLength(data) : data.length;
+	            if (len < self.perMessageDeflate.threshold) {
+	              opts.compress = false;
+	            }
+	          }
+	        }
+
+	        //Sometimes the websocket has already been closed but the browser didn't
+	        //have a chance of informing us about it yet, in that case send will
+	        //throw an error
+	        try {
+	          if (BrowserWebSocket) {
+	            // TypeError is thrown when passing the second argument on Safari
+	            self.ws.send(data);
+	          } else {
+	            self.ws.send(data, opts);
+	          }
+	        } catch (e){
+	          debug('websocket closed before onclose event');
+	        }
+
+	        --total || done();
+	      });
+	    })(packets[i]);
 	  }
 
-	  function ondrain() {
-	    self.writable = true;
-	    self.emit('drain');
+	  function done(){
+	    self.emit('flush');
+
+	    // fake drain
+	    // defer to next tick to allow Socket to clear writeBuffer
+	    setTimeout(function(){
+	      self.writable = true;
+	      self.emit('drain');
+	    }, 0);
 	  }
-	  // fake drain
-	  // defer to next tick to allow Socket to clear writeBuffer
-	  setTimeout(ondrain, 0);
 	};
 
 	/**
@@ -26248,7 +26577,7 @@
 
 	  // append timestamp to URI
 	  if (this.timestampRequests) {
-	    query[this.timestampParam] = +new Date;
+	    query[this.timestampParam] = yeast();
 	  }
 
 	  // communicate binary support capabilities
@@ -26263,7 +26592,8 @@
 	    query = '?' + query;
 	  }
 
-	  return schema + '://' + this.hostname + port + this.path + query;
+	  var ipv6 = this.hostname.indexOf(':') !== -1;
+	  return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
 	};
 
 	/**
@@ -26277,58 +26607,16 @@
 	  return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
 	};
 
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 198 */
+/***/ function(module, exports) {
+
+	/* (ignored) */
 
 /***/ },
 /* 199 */
-/***/ function(module, exports) {
-
-	
-	/**
-	 * Module dependencies.
-	 */
-
-	var global = (function() { return this; })();
-
-	/**
-	 * WebSocket constructor.
-	 */
-
-	var WebSocket = global.WebSocket || global.MozWebSocket;
-
-	/**
-	 * Module exports.
-	 */
-
-	module.exports = WebSocket ? ws : null;
-
-	/**
-	 * WebSocket constructor.
-	 *
-	 * The third `opts` options object gets ignored in web browsers, since it's
-	 * non-standard, and throws a TypeError if passed to the constructor.
-	 * See: https://github.com/einaros/ws/issues/227
-	 *
-	 * @param {String} uri
-	 * @param {Array} protocols (optional)
-	 * @param {Object) opts (optional)
-	 * @api public
-	 */
-
-	function ws(uri, protocols, opts) {
-	  var instance;
-	  if (protocols) {
-	    instance = new WebSocket(uri, protocols);
-	  } else {
-	    instance = new WebSocket(uri);
-	  }
-	  return instance;
-	}
-
-	if (WebSocket) ws.prototype = WebSocket.prototype;
-
-
-/***/ },
-/* 200 */
 /***/ function(module, exports) {
 
 	
@@ -26343,52 +26631,7 @@
 	};
 
 /***/ },
-/* 201 */
-/***/ function(module, exports) {
-
-	/**
-	 * Parses an URI
-	 *
-	 * @author Steven Levithan <stevenlevithan.com> (MIT license)
-	 * @api private
-	 */
-
-	var re = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
-
-	var parts = [
-	    'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
-	];
-
-	module.exports = function parseuri(str) {
-	    var src = str,
-	        b = str.indexOf('['),
-	        e = str.indexOf(']');
-
-	    if (b != -1 && e != -1) {
-	        str = str.substring(0, b) + str.substring(b, e).replace(/:/g, ';') + str.substring(e, str.length);
-	    }
-
-	    var m = re.exec(str || ''),
-	        uri = {},
-	        i = 14;
-
-	    while (i--) {
-	        uri[parts[i]] = m[i] || '';
-	    }
-
-	    if (b != -1 && e != -1) {
-	        uri.source = src;
-	        uri.host = uri.host.substring(1, uri.host.length - 1).replace(/;/g, ':');
-	        uri.authority = uri.authority.replace('[', '').replace(']', '').replace(/;/g, ':');
-	        uri.ipv6uri = true;
-	    }
-
-	    return uri;
-	};
-
-
-/***/ },
-/* 202 */
+/* 200 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -26426,7 +26669,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 203 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -26434,13 +26677,13 @@
 	 * Module dependencies.
 	 */
 
-	var parser = __webpack_require__(164);
-	var Emitter = __webpack_require__(168);
-	var toArray = __webpack_require__(204);
-	var on = __webpack_require__(205);
-	var bind = __webpack_require__(206);
-	var debug = __webpack_require__(163)('socket.io-client:socket');
-	var hasBin = __webpack_require__(184);
+	var parser = __webpack_require__(165);
+	var Emitter = __webpack_require__(202);
+	var toArray = __webpack_require__(203);
+	var on = __webpack_require__(204);
+	var bind = __webpack_require__(205);
+	var debug = __webpack_require__(162)('socket.io-client:socket');
+	var hasBin = __webpack_require__(206);
 
 	/**
 	 * Module exports.
@@ -26459,13 +26702,16 @@
 	  connect: 1,
 	  connect_error: 1,
 	  connect_timeout: 1,
+	  connecting: 1,
 	  disconnect: 1,
 	  error: 1,
 	  reconnect: 1,
 	  reconnect_attempt: 1,
 	  reconnect_failed: 1,
 	  reconnect_error: 1,
-	  reconnecting: 1
+	  reconnecting: 1,
+	  ping: 1,
+	  pong: 1
 	};
 
 	/**
@@ -26486,11 +26732,11 @@
 	  this.json = this; // compat
 	  this.ids = 0;
 	  this.acks = {};
-	  if (this.io.autoConnect) this.open();
 	  this.receiveBuffer = [];
 	  this.sendBuffer = [];
 	  this.connected = false;
 	  this.disconnected = true;
+	  if (this.io.autoConnect) this.open();
 	}
 
 	/**
@@ -26529,6 +26775,7 @@
 	  this.subEvents();
 	  this.io.open(); // ensure open
 	  if ('open' == this.io.readyState) this.onopen();
+	  this.emit('connecting');
 	  return this;
 	};
 
@@ -26566,6 +26813,9 @@
 	  if (hasBin(args)) { parserType = parser.BINARY_EVENT; } // binary
 	  var packet = { type: parserType, data: args };
 
+	  packet.options = {};
+	  packet.options.compress = !this.flags || false !== this.flags.compress;
+
 	  // event ack callback
 	  if ('function' == typeof args[args.length - 1]) {
 	    debug('emitting packet with ack id %d', this.ids);
@@ -26578,6 +26828,8 @@
 	  } else {
 	    this.sendBuffer.push(packet);
 	  }
+
+	  delete this.flags;
 
 	  return this;
 	};
@@ -26721,10 +26973,14 @@
 	 */
 
 	Socket.prototype.onack = function(packet){
-	  debug('calling ack %s with %j', packet.id, packet.data);
-	  var fn = this.acks[packet.id];
-	  fn.apply(this, packet.data);
-	  delete this.acks[packet.id];
+	  var ack = this.acks[packet.id];
+	  if ('function' == typeof ack) {
+	    debug('calling ack %s with %j', packet.id, packet.data);
+	    ack.apply(this, packet.data);
+	    delete this.acks[packet.id];
+	  } else {
+	    debug('bad ack %s', packet.id);
+	  }
 	};
 
 	/**
@@ -26815,9 +27071,190 @@
 	  return this;
 	};
 
+	/**
+	 * Sets the compress flag.
+	 *
+	 * @param {Boolean} if `true`, compresses the sending data
+	 * @return {Socket} self
+	 * @api public
+	 */
+
+	Socket.prototype.compress = function(compress){
+	  this.flags = this.flags || {};
+	  this.flags.compress = compress;
+	  return this;
+	};
+
 
 /***/ },
-/* 204 */
+/* 202 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Expose `Emitter`.
+	 */
+
+	module.exports = Emitter;
+
+	/**
+	 * Initialize a new `Emitter`.
+	 *
+	 * @api public
+	 */
+
+	function Emitter(obj) {
+	  if (obj) return mixin(obj);
+	};
+
+	/**
+	 * Mixin the emitter properties.
+	 *
+	 * @param {Object} obj
+	 * @return {Object}
+	 * @api private
+	 */
+
+	function mixin(obj) {
+	  for (var key in Emitter.prototype) {
+	    obj[key] = Emitter.prototype[key];
+	  }
+	  return obj;
+	}
+
+	/**
+	 * Listen on the given `event` with `fn`.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.on =
+	Emitter.prototype.addEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+	    .push(fn);
+	  return this;
+	};
+
+	/**
+	 * Adds an `event` listener that will be invoked a single
+	 * time then automatically removed.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.once = function(event, fn){
+	  function on() {
+	    this.off(event, on);
+	    fn.apply(this, arguments);
+	  }
+
+	  on.fn = fn;
+	  this.on(event, on);
+	  return this;
+	};
+
+	/**
+	 * Remove the given callback for `event` or all
+	 * registered callbacks.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.off =
+	Emitter.prototype.removeListener =
+	Emitter.prototype.removeAllListeners =
+	Emitter.prototype.removeEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+
+	  // all
+	  if (0 == arguments.length) {
+	    this._callbacks = {};
+	    return this;
+	  }
+
+	  // specific event
+	  var callbacks = this._callbacks['$' + event];
+	  if (!callbacks) return this;
+
+	  // remove all handlers
+	  if (1 == arguments.length) {
+	    delete this._callbacks['$' + event];
+	    return this;
+	  }
+
+	  // remove specific handler
+	  var cb;
+	  for (var i = 0; i < callbacks.length; i++) {
+	    cb = callbacks[i];
+	    if (cb === fn || cb.fn === fn) {
+	      callbacks.splice(i, 1);
+	      break;
+	    }
+	  }
+	  return this;
+	};
+
+	/**
+	 * Emit `event` with the given args.
+	 *
+	 * @param {String} event
+	 * @param {Mixed} ...
+	 * @return {Emitter}
+	 */
+
+	Emitter.prototype.emit = function(event){
+	  this._callbacks = this._callbacks || {};
+	  var args = [].slice.call(arguments, 1)
+	    , callbacks = this._callbacks['$' + event];
+
+	  if (callbacks) {
+	    callbacks = callbacks.slice(0);
+	    for (var i = 0, len = callbacks.length; i < len; ++i) {
+	      callbacks[i].apply(this, args);
+	    }
+	  }
+
+	  return this;
+	};
+
+	/**
+	 * Return array of callbacks for `event`.
+	 *
+	 * @param {String} event
+	 * @return {Array}
+	 * @api public
+	 */
+
+	Emitter.prototype.listeners = function(event){
+	  this._callbacks = this._callbacks || {};
+	  return this._callbacks['$' + event] || [];
+	};
+
+	/**
+	 * Check if this emitter has `event` handlers.
+	 *
+	 * @param {String} event
+	 * @return {Boolean}
+	 * @api public
+	 */
+
+	Emitter.prototype.hasListeners = function(event){
+	  return !! this.listeners(event).length;
+	};
+
+
+/***/ },
+/* 203 */
 /***/ function(module, exports) {
 
 	module.exports = toArray
@@ -26836,7 +27273,7 @@
 
 
 /***/ },
-/* 205 */
+/* 204 */
 /***/ function(module, exports) {
 
 	
@@ -26866,7 +27303,7 @@
 
 
 /***/ },
-/* 206 */
+/* 205 */
 /***/ function(module, exports) {
 
 	/**
@@ -26895,93 +27332,79 @@
 
 
 /***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {
+	/*
+	 * Module requirements.
+	 */
+
+	var isArray = __webpack_require__(207);
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = hasBinary;
+
+	/**
+	 * Checks for binary data.
+	 *
+	 * Right now only Buffer and ArrayBuffer are supported..
+	 *
+	 * @param {Object} anything
+	 * @api public
+	 */
+
+	function hasBinary(data) {
+
+	  function _hasBinary(obj) {
+	    if (!obj) return false;
+
+	    if ( (global.Buffer && global.Buffer.isBuffer && global.Buffer.isBuffer(obj)) ||
+	         (global.ArrayBuffer && obj instanceof ArrayBuffer) ||
+	         (global.Blob && obj instanceof Blob) ||
+	         (global.File && obj instanceof File)
+	        ) {
+	      return true;
+	    }
+
+	    if (isArray(obj)) {
+	      for (var i = 0; i < obj.length; i++) {
+	          if (_hasBinary(obj[i])) {
+	              return true;
+	          }
+	      }
+	    } else if (obj && 'object' == typeof obj) {
+	      // see: https://github.com/Automattic/has-binary/pull/4
+	      if (obj.toJSON && 'function' == typeof obj.toJSON) {
+	        obj = obj.toJSON();
+	      }
+
+	      for (var key in obj) {
+	        if (Object.prototype.hasOwnProperty.call(obj, key) && _hasBinary(obj[key])) {
+	          return true;
+	        }
+	      }
+	    }
+
+	    return false;
+	  }
+
+	  return _hasBinary(data);
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
 /* 207 */
 /***/ function(module, exports) {
 
-	
-	/**
-	 * HOP ref.
-	 */
-
-	var has = Object.prototype.hasOwnProperty;
-
-	/**
-	 * Return own keys in `obj`.
-	 *
-	 * @param {Object} obj
-	 * @return {Array}
-	 * @api public
-	 */
-
-	exports.keys = Object.keys || function(obj){
-	  var keys = [];
-	  for (var key in obj) {
-	    if (has.call(obj, key)) {
-	      keys.push(key);
-	    }
-	  }
-	  return keys;
+	module.exports = Array.isArray || function (arr) {
+	  return Object.prototype.toString.call(arr) == '[object Array]';
 	};
 
-	/**
-	 * Return own values in `obj`.
-	 *
-	 * @param {Object} obj
-	 * @return {Array}
-	 * @api public
-	 */
-
-	exports.values = function(obj){
-	  var vals = [];
-	  for (var key in obj) {
-	    if (has.call(obj, key)) {
-	      vals.push(obj[key]);
-	    }
-	  }
-	  return vals;
-	};
-
-	/**
-	 * Merge `b` into `a`.
-	 *
-	 * @param {Object} a
-	 * @param {Object} b
-	 * @return {Object} a
-	 * @api public
-	 */
-
-	exports.merge = function(a, b){
-	  for (var key in b) {
-	    if (has.call(b, key)) {
-	      a[key] = b[key];
-	    }
-	  }
-	  return a;
-	};
-
-	/**
-	 * Return length of `obj`.
-	 *
-	 * @param {Object} obj
-	 * @return {Number}
-	 * @api public
-	 */
-
-	exports.length = function(obj){
-	  return exports.keys(obj).length;
-	};
-
-	/**
-	 * Check if `obj` is empty.
-	 *
-	 * @param {Object} obj
-	 * @return {Boolean}
-	 * @api public
-	 */
-
-	exports.isEmpty = function(obj){
-	  return 0 == exports.length(obj);
-	};
 
 /***/ },
 /* 208 */
