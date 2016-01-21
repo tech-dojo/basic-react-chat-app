@@ -12,6 +12,6 @@ To install and run:
 
 4. Visit http://localhost:3000 in multiple browser tabs and send messages
 
-Based on [Facebook's React Comments Box Tutorial]: https://facebook.github.io/react/docs/tutorial.html code.
+Based on [Facebook's React Comments Box Tutorial]( https://facebook.github.io/react/docs/tutorial.html code.)
 
-Read more in the [TechDojo Blog]: http://www.tech-dojo.org/#!/articles
+Read more in the [TechDojo Blog](http://www.tech-dojo.org/#!/articles)
