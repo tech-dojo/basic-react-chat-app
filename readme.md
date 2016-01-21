@@ -1,6 +1,6 @@
 # Basic Chat App with React.js
 
-![Screenshot](/screenahot.png "Logo Title Text 1")
+![Screenshot](/screenshot.png "Logo Title Text 1")
 
 To install and run:
 
