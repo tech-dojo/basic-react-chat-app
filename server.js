@@ -21,4 +21,4 @@ io.sockets.on('connection',function(socket){
 
 
 });
-console.log("server running ar port : + "+process.env.PORT+ " And at ip : "+ process.env.IP);
+console.log("server running");
